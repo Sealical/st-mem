@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>ST-Mem · Linguistic Trajectory Encoding</title>
+    <meta
+      name="description"
+      content="Linguistic Trajectory Encoding connects language, sparse 3D locations, and visual evidence to build queryable long-horizon memory for embodied agents."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="ST-Mem: Linguistic Trajectory Encoding"
+    />
+    <meta
+      property="og:description"
+      content="An object’s history, remembered in language and grounded in space. Read the paper and explore the method. Code coming soon."
+    />
+    <link rel="canonical" href="https://sealical.github.io/st-mem/" />
+    <meta property="og:url" content="https://sealical.github.io/st-mem/" />
+    <meta property="og:site_name" content="ST-Mem" />
+    <meta
+      property="og:image"
+      content="https://sealical.github.io/st-mem/assets/st_mem_teaser.png"
+    />
+    <meta property="og:image:width" content="1210" />
+    <meta property="og:image:height" content="675" />
+    <meta
+      property="og:image:alt"
+      content="The paper’s teaser: linguistic, spatial and visual evidence connected across an egocentric day."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ST-Mem: Linguistic Trajectory Encoding"
+    />
+    <meta
+      name="twitter:description"
+      content="An object’s history, remembered in language and grounded in space. Read the paper and explore the method. Code coming soon."
+    />
+    <meta
+      name="twitter:image"
+      content="https://sealical.github.io/st-mem/assets/st_mem_teaser.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="The paper’s teaser: linguistic, spatial and visual evidence connected across an egocentric day."
+    />
+    <meta
+      name="citation_title"
+      content="Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents"
+    />
+    <meta name="citation_author" content="Tianyidan Xie" />
+    <meta name="citation_author" content="Shenyi Wang" />
+    <meta name="citation_author" content="Qiang Tang" />
+    <meta name="citation_author" content="Mingjie Wang" />
+    <meta name="citation_author" content="Zhicheng Qiu" />
+    <meta name="citation_author" content="Xuanfu Li" />
+    <meta name="citation_author" content="Zhan Xu" />
+    <meta name="citation_author" content="Jian Yang" />
+    <meta name="citation_author" content="Lanjun Wang" />
+    <meta name="citation_author" content="Zili Yi" />
+    <meta name="citation_publication_date" content="2026/09/04" />
+    <meta name="citation_arxiv_id" content="2609.04802" />
+    <meta name="citation_doi" content="10.48550/arXiv.2609.04802" />
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2609.04802" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="#top" aria-label="ST-Mem, back to top"
+          ><span class="brand-mark" aria-hidden="true"
+            ><i></i><i></i><i></i></span
+          >ST-Mem<span class="wordmark-note">RESEARCH</span></a
+        >
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#method">Method</a><a href="#queries">Queries</a
+          ><a href="#results">Results</a><a href="#code">Code</a
+          ><a href="#citation">Cite</a>
+        </nav>
+        <a
+          class="header-paper"
+          href="https://arxiv.org/abs/2609.04802"
+          target="_blank"
+          rel="noopener noreferrer"
+          >arXiv <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero container" id="top" aria-labelledby="paper-title">
+        <p class="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span> Embodied
+          intelligence <span class="eyebrow-divider">/</span> arXiv preprint ·
+          2026
+        </p>
+        <h1 id="paper-title">
+          <span class="title-main">Linguistic Trajectory Encoding</span
+          ><span class="title-sub"
+            >for Efficient Long-Horizon Spatial Memory<br
+              class="desktop-break"
+            />
+            in Embodied Agents</span
+          >
+        </h1>
+        <p class="hero-summary">
+          An object’s history, remembered in language.<br />Grounded in space.
+          Connected through time.
+        </p>
+        <div class="authors" aria-label="Authors in paper order">
+          <span>Tianyidan Xie<sup>1,*</sup></span
+          ><span>Shenyi Wang<sup>1</sup></span
+          ><span>Qiang Tang<sup>2</sup></span
+          ><span>Mingjie Wang<sup>3</sup></span
+          ><span>Zhicheng Qiu<sup>4</sup></span>
+          <span>Xuanfu Li<sup>4</sup></span
+          ><span>Zhan Xu<sup>4</sup></span
+          ><span>Jian Yang<sup>1</sup></span
+          ><span>Lanjun Wang<sup>5</sup></span
+          ><span>Zili Yi<sup>1,*</sup></span>
+        </div>
+        <div class="affiliations">
+          <span><sup>1</sup>Nanjing University</span
+          ><span><sup>2</sup>University of British Columbia</span
+          ><span><sup>3</sup>Zhejiang Sci-Tech University</span
+          ><span><sup>4</sup>Huawei Technologies Co., Ltd.</span
+          ><span><sup>5</sup>Tianjin University</span>
+        </div>
+        <p class="correspondence">
+          * Corresponding authors:
+          <a href="mailto:sealical@outlook.com">Tianyidan Xie</a> and
+          <a href="mailto:yi@nju.edu.cn">Zili Yi</a>
+        </p>
+        <div class="hero-actions">
+          <a
+            class="button button-primary"
+            href="https://arxiv.org/abs/2609.04802"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Read the paper <span aria-hidden="true">↗</span></a
+          >
+          <a class="button button-secondary" href="#code"
+            >Code <span class="button-badge">coming soon</span></a
+          >
+          <a class="button button-text" href="#citation"
+            >BibTeX <span aria-hidden="true">↓</span></a
+          >
+        </div>
+        <p class="release-note">
+          The paper is public. Code and installation instructions are coming
+          soon.
+        </p>
+      </section>
+
+      <section class="container teaser-section" aria-label="Research overview">
+        <figure class="paper-figure teaser-figure">
+          <div class="figure-topline">
+            <span>01 / THE IDEA AT A GLANCE</span
+            ><span>Figure 1 from the paper</span>
+          </div>
+          <a
+            class="figure-link"
+            href="assets/st_mem_teaser.png"
+            data-figure
+            data-caption="Figure 1 · ST-Mem at a glance"
+            target="_blank"
+            rel="noopener"
+            aria-label="Enlarge the paper teaser"
+          >
+            <img
+              src="assets/st_mem_teaser.png"
+              width="1210"
+              height="675"
+              fetchpriority="high"
+              alt="The paper teaser contrasts scanning every video clip with an LTE memory. Language descriptions, spatial anchors and visual evidence connect an apple, a book and keys to their histories in a reconstructed home."
+            />
+            <span class="figure-zoom" aria-hidden="true">View full size ↗</span>
+          </a>
+          <figcaption>
+            From hours of observations to an object-centric memory: retrieve
+            <em>what happened</em>, <em>where</em>, and <em>when</em> through
+            linked evidence. Numbers in this original figure are paper-reported
+            results, not measurements of the core code release.
+          </figcaption>
+        </figure>
+        <div class="overview-copy">
+          <p class="eyebrow">THE PROBLEM</p>
+          <h2>
+            Remembering a place is not enough.<br />You need to remember what
+            changed.
+          </h2>
+          <p>
+            “Where did I last put the washed apple?” asks for an object, a state
+            change, and a location at a particular moment. LTE gives each object
+            a compact, language-queryable history, linking descriptions of its
+            motion to sparse 3D positions and visual evidence. The memory
+            preserves the connections between these three forms of evidence
+            across long observation horizons.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="section section-tinted"
+        id="method"
+        aria-labelledby="method-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">02 / THE METHOD</p>
+            <h2 id="method-title">
+              Three kinds of evidence.<br />One object history.
+            </h2>
+            <p>
+              LTE combines complementary channels in a single per-object record.
+            </p>
+          </div>
+          <div class="channels">
+            <article class="channel channel-language">
+              <span class="channel-index">C / LANGUAGE</span>
+              <h3>What changed?</h3>
+              <p>
+                Interval captions describe an object’s motion and state in
+                language, making its history semantically searchable.
+              </p>
+              <span class="channel-example"
+                >“Apple moved from sink to counter.”</span
+              >
+            </article>
+            <article class="channel channel-spatial">
+              <span class="channel-index">A<sub>spatial</sub> / GEOMETRY</span>
+              <h3>Where did it happen?</h3>
+              <p>
+                Sparse 3D waypoints preserve the shape of a trajectory. Complex
+                motion keeps more anchors; simpler motion needs fewer.
+              </p>
+              <span class="channel-example"
+                >World position + observation time</span
+              >
+            </article>
+            <article class="channel channel-visual">
+              <span class="channel-index">A<sub>visual</sub> / IDENTITY</span>
+              <h3>Which object was it?</h3>
+              <p>
+                Crops and bounding boxes ground the record in what was actually
+                seen, supporting visual matching and identity checks.
+              </p>
+              <span class="channel-example">Object crop + frame reference</span>
+            </article>
+          </div>
+          <p class="method-note">
+            <strong>Missing observations are not new evidence.</strong> Tracking
+            gaps retain the last-seen location; the representation does not
+            pretend to observe an object while it is out of view.
+          </p>
+          <figure class="paper-figure framework-figure">
+            <div class="figure-topline">
+              <span>FROM PERCEPTION TO RETRIEVAL</span
+              ><span>Figure 2 from the paper</span>
+            </div>
+            <a
+              class="figure-link"
+              href="assets/st_mem_framework.png"
+              data-figure
+              data-caption="Figure 2 · LTE-centric memory architecture"
+              target="_blank"
+              rel="noopener"
+              aria-label="Enlarge the paper framework diagram"
+            >
+              <img
+                src="assets/st_mem_framework.png"
+                width="1253"
+                height="623"
+                loading="lazy"
+                decoding="async"
+                alt="Framework diagram: perception produces structured observations; the memory combines an octree with linguistic trajectory encoding; Object, Scene, Text, Event and Image views support NLQ, VQ2D, STR and LOR queries."
+              />
+              <span class="figure-zoom" aria-hidden="true"
+                >View full size ↗</span
+              >
+            </a>
+            <figcaption>
+              The paper’s full architecture organizes shared object records into
+              five complementary views. The current code release implements a
+              scoped offline memory core; audio and the complete evaluation
+              pipeline are not included.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section
+        class="section container"
+        id="queries"
+        aria-labelledby="queries-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">03 / ASK THE MEMORY</p>
+          <h2 id="queries-title">
+            Different questions.<br />Connected evidence.
+          </h2>
+          <p>
+            Four retrieval tasks probe time, visual identity, motion, and the
+            last observed location.
+          </p>
+        </div>
+        <div class="query-explorer">
+          <div class="query-tabs" role="tablist" aria-label="Query task" hidden>
+            <button
+              id="tab-nlq"
+              role="tab"
+              aria-controls="panel-nlq"
+              aria-selected="true"
+              tabindex="0"
+            >
+              NLQ <span>When?</span>
+            </button>
+            <button
+              id="tab-vq2d"
+              role="tab"
+              aria-controls="panel-vq2d"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              VQ2D <span>Which?</span>
+            </button>
+            <button
+              id="tab-str"
+              role="tab"
+              aria-controls="panel-str"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              STR <span>How did it move?</span>
+            </button>
+            <button
+              id="tab-lor"
+              role="tab"
+              aria-controls="panel-lor"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              LOR <span>Where was it last?</span>
+            </button>
+          </div>
+          <article
+            class="query-panel"
+            id="panel-nlq"
+            aria-labelledby="nlq-heading"
+          >
+            <div class="query-prompt">
+              <p class="eyebrow">EGO4D / NATURAL LANGUAGE QUERIES</p>
+              <h3 id="nlq-heading">“When did I wash the apple?”</h3>
+              <p>
+                Locate relevant moments in an observation history using a
+                natural-language description.
+              </p>
+            </div>
+            <div class="query-evidence">
+              <span class="evidence-label">EVIDENCE TO RETRIEVE</span>
+              <ul>
+                <li>
+                  <span class="evidence-dot language-dot"></span
+                  >Language-matched intervals
+                </li>
+                <li>
+                  <span class="evidence-dot spatial-dot"></span>Temporal bounds
+                </li>
+                <li>
+                  <span class="evidence-dot visual-dot"></span>Linked object
+                  context
+                </li>
+              </ul>
+            </div>
+          </article>
+          <article
+            class="query-panel"
+            id="panel-vq2d"
+            aria-labelledby="vq2d-heading"
+          >
+            <div class="query-prompt">
+              <p class="eyebrow">EGO4D / VISUAL QUERIES 2D</p>
+              <h3 id="vq2d-heading">Find this object in the past.</h3>
+              <p>
+                A reference object crop is the query. Visual matching retrieves
+                earlier evidence of that object.
+              </p>
+            </div>
+            <div class="query-evidence">
+              <span class="evidence-label">EVIDENCE TO RETRIEVE</span>
+              <ul>
+                <li>
+                  <span class="evidence-dot visual-dot"></span>Matching visual
+                  anchors
+                </li>
+                <li>
+                  <span class="evidence-dot spatial-dot"></span>Image-space
+                  bounding boxes
+                </li>
+                <li>
+                  <span class="evidence-dot language-dot"></span>Frame and time
+                  references
+                </li>
+              </ul>
+            </div>
+          </article>
+          <article
+            class="query-panel"
+            id="panel-str"
+            aria-labelledby="str-heading"
+          >
+            <div class="query-prompt">
+              <p class="eyebrow">SMB / SEMANTIC TRAJECTORY RETRIEVAL</p>
+              <h3 id="str-heading">
+                “Show the apple’s path from the sink to the counter.”
+              </h3>
+              <p>
+                Retrieve an object’s trajectory using semantic state, spatial,
+                and temporal constraints.
+              </p>
+            </div>
+            <div class="query-evidence">
+              <span class="evidence-label">EVIDENCE TO RETRIEVE</span>
+              <ul>
+                <li>
+                  <span class="evidence-dot language-dot"></span
+                  >Language-described motion phases
+                </li>
+                <li>
+                  <span class="evidence-dot spatial-dot"></span>Sparse 3D
+                  trajectory anchors
+                </li>
+                <li>
+                  <span class="evidence-dot visual-dot"></span>Linked visual
+                  evidence
+                </li>
+              </ul>
+            </div>
+          </article>
+          <article
+            class="query-panel"
+            id="panel-lor"
+            aria-labelledby="lor-heading"
+          >
+            <div class="query-prompt">
+              <p class="eyebrow">SMB / LONG-HORIZON OBJECT RETRIEVAL</p>
+              <h3 id="lor-heading">“Where did I last leave my keys?”</h3>
+              <p>
+                Search a long lookback window for an object’s most recent
+                observed location.
+              </p>
+            </div>
+            <div class="query-evidence">
+              <span class="evidence-label">EVIDENCE TO RETRIEVE</span>
+              <ul>
+                <li>
+                  <span class="evidence-dot spatial-dot"></span>Last observed
+                  position
+                </li>
+                <li>
+                  <span class="evidence-dot language-dot"></span>Time of the
+                  observation
+                </li>
+                <li>
+                  <span class="evidence-dot visual-dot"></span>Object identity
+                  evidence
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <p class="small-note">
+          Illustrative task examples, not live inference or recorded query
+          results. The core code exposes explicit filters; this page does not
+          run models.
+        </p>
+      </section>
+
+      <section
+        class="section section-dark"
+        id="results"
+        aria-labelledby="results-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">04 / RESULTS IN THE PAPER</p>
+            <h2 id="results-title">
+              Compact memory.<br />Long-horizon retrieval.
+            </h2>
+            <p>
+              The Spatial Memory Benchmark (SMB) contains 600 queries across
+              EgoLife multi-day recordings: 300 trajectory queries and 300
+              long-horizon object queries.
+            </p>
+          </div>
+          <div class="metrics" aria-label="Paper-reported headline results">
+            <div class="metric">
+              <strong>45.3<span>%</span></strong
+              ><span>SMB trajectory retrieval</span
+              ><small>+13.4 points over Q3VL-235B + GD</small>
+            </div>
+            <div class="metric">
+              <strong>48.7<span>%</span></strong
+              ><span>SMB last-occurrence retrieval</span
+              ><small>+14.3 points over Q3VL-235B + GD</small>
+            </div>
+            <div class="metric">
+              <strong class="metric-range">8.7–26.1<span>×</span></strong
+              ><span>Trajectory compression</span
+              ><small>LTE-only storage vs. dense trajectories</small>
+            </div>
+            <div class="metric">
+              <strong>0.43<span>s</span></strong
+              ><span>Per-query latency at 24 h</span
+              ><small>Single A800 · after memory construction</small>
+            </div>
+          </div>
+          <div class="results-detail">
+            <div>
+              <h3>A memory representation,<br />not a larger video model.</h3>
+              <p>
+                The strongest VLM baseline scans clips. LTE instead retains
+                object-level histories, with linked language, geometry and
+                visual anchors.
+              </p>
+              <p>
+                On Ego4D NLQ at IoU = 0.3, the paper reports
+                <strong>28.75% R@1</strong> and <strong>55.10% R@5</strong>.
+              </p>
+              <a
+                class="light-link"
+                href="https://arxiv.org/abs/2609.04802"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Read the experimental settings and limitations
+                <span aria-hidden="true">↗</span></a
+              >
+            </div>
+            <div
+              class="table-scroll"
+              tabindex="0"
+              role="region"
+              aria-label="Spatial Memory Benchmark results table, horizontally scrollable on small screens"
+            >
+              <table>
+                <caption>
+                  Spatial Memory Benchmark · success rate (%)
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Method</th>
+                    <th scope="col">STR ↑</th>
+                    <th scope="col">LOR ↑</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Q3VL-8B + GD</th>
+                    <td>21.5</td>
+                    <td>25.1</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Q3VL-235B + GD</th>
+                    <td>31.9</td>
+                    <td>34.4</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">KFMem</th>
+                    <td>19.8</td>
+                    <td>33.8</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">VideoAgent</th>
+                    <td>24.7</td>
+                    <td>30.5</td>
+                  </tr>
+                  <tr class="ours-row">
+                    <th scope="row">LTE-based system (ours)</th>
+                    <td>45.3</td>
+                    <td>48.7</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="results-disclaimer">
+            Source:
+            <a
+              href="https://arxiv.org/abs/2609.04802v1"
+              target="_blank"
+              rel="noopener noreferrer"
+              >arXiv:2609.04802v1</a
+            >, §4. These are reported research results, not new measurements of
+            the scoped core release. Compression refers to LTE trajectory
+            storage, not the total system footprint; query latency excludes
+            preprocessing and memory construction.
+          </p>
+        </div>
+      </section>
+
+      <section class="section container" id="code" aria-labelledby="code-title">
+        <div class="code-layout">
+          <div class="section-heading">
+            <p class="eyebrow">05 / THE CODE</p>
+            <h2 id="code-title">Code coming soon.</h2>
+            <p>
+              We are preparing a focused release of the ST-Mem memory core:
+              start with a small CPU example, then connect offline perception
+              for a real video.
+            </p>
+            <div class="availability">
+              <span class="availability-label">COMING SOON</span>
+              <p>
+                The implementation is not publicly available yet. Code,
+                installation instructions, and functional validation notes will
+                be linked here when the release is ready.
+              </p>
+            </div>
+          </div>
+          <div class="code-card">
+            <div class="code-topline">
+              <span>PREVIEW · AFTER THE CODE RELEASE</span
+              ><span>Python 3.11+</span>
+            </div>
+            <pre
+              class="command-code"
+            ><code><span class="code-comment"># From the embodied-slam checkout</span>
+python -m pip install -e '.[stmem]'
+
+<span class="code-comment"># Synthetic example · no weights or GPU</span>
+embodied-stmem demo \
+  --output outputs/stmem-demo</code></pre>
+            <p>
+              Build → save → reload → query. Use a new output directory for each
+              demo run.
+            </p>
+            <div class="scope-grid">
+              <div>
+                <h3>Planned scope</h3>
+                <p>
+                  LTE · five linked views<br />Portable memory · four query
+                  APIs<br />Offline perception adapters
+                </p>
+              </div>
+              <div>
+                <h3>Outside the planned release</h3>
+                <p>
+                  Full benchmark reproduction<br />Evaluation / training
+                  pipelines<br />Audio and navigation
+                </p>
+              </div>
+            </div>
+            <p>
+              The planned release focuses on core functionality, not full
+              reproduction of the paper’s benchmark results.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section-tinted"
+        id="citation"
+        aria-labelledby="citation-title"
+      >
+        <div class="container citation-layout">
+          <div class="section-heading">
+            <p class="eyebrow">06 / CITATION</p>
+            <h2 id="citation-title">Build on this work.</h2>
+            <p>
+              If this research is useful to your work, please cite the paper.
+            </p>
+            <a
+              class="text-link"
+              href="https://arxiv.org/abs/2609.04802"
+              target="_blank"
+              rel="noopener noreferrer"
+              >arXiv:2609.04802 <span aria-hidden="true">↗</span></a
+            >
+            <p class="citation-doi">
+              DOI:
+              <a
+                href="https://doi.org/10.48550/arXiv.2609.04802"
+                target="_blank"
+                rel="noopener noreferrer"
+                >10.48550/arXiv.2609.04802</a
+              >
+            </p>
+          </div>
+          <div class="citation-card">
+            <div class="citation-toolbar">
+              <span>BIBTEX</span>
+              <div>
+                <a href="citation.bib" download>Download .bib</a
+                ><button
+                  class="copy-button"
+                  type="button"
+                  data-copy-citation
+                  hidden
+                >
+                  Copy citation
+                </button>
+              </div>
+            </div>
+            <pre
+              tabindex="0"
+              aria-label="BibTeX citation"
+            ><code id="bibtex">@misc{xie2026linguistictrajectory,
+  title = {Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents},
+  author = {Tianyidan Xie and Shenyi Wang and Qiang Tang and Mingjie Wang and Zhicheng Qiu and Xuanfu Li and Zhan Xu and Jian Yang and Lanjun Wang and Zili Yi},
+  year = {2026},
+  eprint = {2609.04802},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  doi = {10.48550/arXiv.2609.04802},
+  url = {https://arxiv.org/abs/2609.04802}
+}</code></pre>
+            <p
+              id="copy-status"
+              class="copy-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container site-footer">
+      <a class="wordmark" href="#top"
+        ><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span
+        >ST-Mem</a
+      >
+      <div>
+        <p>Research by Tianyidan Xie and collaborators · 2026</p>
+        <p>
+          Paper figures reproduced unmodified from
+          <a
+            href="https://arxiv.org/abs/2609.04802v1"
+            target="_blank"
+            rel="noopener noreferrer"
+            >arXiv v1</a
+          >
+          under
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >CC BY 4.0</a
+          >. Website code:
+          <a href="LICENSE" target="_blank" rel="noopener noreferrer">MIT</a> ·
+          <a
+            href="https://github.com/Sealical/st-mem"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Website source</a
+          >.
+        </p>
+      </div>
+      <a class="back-top" href="#top">Back to top ↑</a>
+    </footer>
+
+    <dialog
+      class="figure-dialog"
+      id="figure-dialog"
+      aria-labelledby="figure-dialog-title"
+    >
+      <div class="dialog-toolbar">
+        <p id="figure-dialog-title">Paper figure</p>
+        <button
+          type="button"
+          data-close-figure
+          aria-label="Close enlarged figure"
+        >
+          Close <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <p class="dialog-hint">
+        Original resolution · scroll to explore on small screens.
+      </p>
+      <div class="dialog-image-scroll">
+        <img id="figure-dialog-image" alt="" />
+      </div>
+    </dialog>
+  </body>
+</html>
