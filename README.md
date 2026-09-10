@@ -21,6 +21,12 @@ evidence for semantic trajectory retrieval and long-horizon object retrieval.
   description, not the ST-Mem implementation, annotations, model weights, or
   evaluation pipelines. No benchmark download is currently offered here.
 
+![LTE teaser: an egocentric observation history becomes per-object linguistic trajectories linked to spatial anchors and visual evidence.](assets/st_mem_teaser.png)
+
+_Figure 1. LTE at a glance. Original teaser from the
+[paper](https://arxiv.org/abs/2609.04802v1); numbers are paper-reported results.
+[View full resolution](assets/st_mem_teaser.png)._
+
 ## What problem does LTE address?
 
 Long-term embodied agent memory needs to retain what happened to an object,
@@ -39,7 +45,13 @@ and trajectory compression; it does not claim a general lifelong-learning agent.
 | ST-Mem                               | This research project and its LTE-based memory system, with five linked views and spatial indexing.              |
 | Spatial Memory Benchmark (SMB)       | The paper's long-horizon benchmark: Semantic Trajectory Retrieval (STR) and Long-Horizon Object Retrieval (LOR). |
 
-Read the [method and original framework figure](https://sealical.github.io/st-mem/#method).
+![LTE-centric framework: perception feeds an object-centric memory with language, spatial and visual anchors; five linked views support the query tasks.](assets/st_mem_framework.png)
+
+_Figure 2. Full research architecture from the
+[paper](https://arxiv.org/abs/2609.04802v1), including components outside the
+planned core code release. [View full resolution](assets/st_mem_framework.png)._
+
+Read the [method explanation](https://sealical.github.io/st-mem/#method).
 The [task illustrations](https://sealical.github.io/st-mem/#queries) are explanatory
 examples, **not live inference**.
 
