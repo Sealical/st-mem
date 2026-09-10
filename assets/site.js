@@ -96,7 +96,12 @@ if (dialog && typeof dialog.showModal === "function") {
 }
 
 if ("IntersectionObserver" in window) {
-  const links = [...document.querySelectorAll(".nav-links a")];
+  const links = [...document.querySelectorAll(".nav-links a")].filter(
+    (link) =>
+      link.hash &&
+      link.origin === location.origin &&
+      link.pathname === location.pathname,
+  );
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {

@@ -4,19 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
-    <title>ST-Mem · Linguistic Trajectory Encoding</title>
+    <title>
+      Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory
+      in Embodied Agents
+    </title>
     <meta
       name="description"
-      content="Linguistic Trajectory Encoding connects language, sparse 3D locations, and visual evidence to build queryable long-horizon memory for embodied agents."
+      content="Linguistic Trajectory Encoding (LTE): object-centric spatiotemporal memory for long-horizon embodied agents. Paper, method, and Spatial Memory Benchmark (SMB)."
     />
     <meta property="og:type" content="article" />
     <meta
       property="og:title"
-      content="ST-Mem: Linguistic Trajectory Encoding"
+      content="Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents"
     />
     <meta
       property="og:description"
-      content="An object’s history, remembered in language and grounded in space. Read the paper and explore the method. Code coming soon."
+      content="Object-centric spatiotemporal memory through language, spatial anchors, and visual evidence. Explore LTE and the Spatial Memory Benchmark. Code coming soon."
     />
     <link rel="canonical" href="https://sealical.github.io/st-mem/" />
     <meta property="og:url" content="https://sealical.github.io/st-mem/" />
@@ -34,11 +37,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="ST-Mem: Linguistic Trajectory Encoding"
+      content="Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents"
     />
     <meta
       name="twitter:description"
-      content="An object’s history, remembered in language and grounded in space. Read the paper and explore the method. Code coming soon."
+      content="Object-centric spatiotemporal memory through language, spatial anchors, and visual evidence. Explore LTE and the Spatial Memory Benchmark. Code coming soon."
     />
     <meta
       name="twitter:image"
@@ -66,6 +69,190 @@
     <meta name="citation_arxiv_id" content="2609.04802" />
     <meta name="citation_doi" content="10.48550/arXiv.2609.04802" />
     <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2609.04802" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://sealical.github.io/st-mem/#website",
+            "name": "ST-Mem — Linguistic Trajectory Encoding",
+            "url": "https://sealical.github.io/st-mem/",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://sealical.github.io/st-mem/#webpage",
+            "url": "https://sealical.github.io/st-mem/",
+            "name": "Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents",
+            "isPartOf": { "@id": "https://sealical.github.io/st-mem/#website" },
+            "mainEntity": {
+              "@id": "https://doi.org/10.48550/arXiv.2609.04802"
+            },
+            "relatedLink": "https://sealical.github.io/st-mem/benchmark/",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "@id": "https://doi.org/10.48550/arXiv.2609.04802",
+            "name": "Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents",
+            "headline": "Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents",
+            "url": "https://arxiv.org/abs/2609.04802",
+            "sameAs": [
+              "https://arxiv.org/abs/2609.04802",
+              "https://openalex.org/W7211917746"
+            ],
+            "identifier": [
+              {
+                "@type": "PropertyValue",
+                "propertyID": "DOI",
+                "value": "10.48550/arXiv.2609.04802"
+              },
+              {
+                "@type": "PropertyValue",
+                "propertyID": "arXiv",
+                "value": "2609.04802"
+              }
+            ],
+            "datePublished": "2026-09-04",
+            "creativeWorkStatus": "Preprint",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "image": "https://sealical.github.io/st-mem/assets/st_mem_teaser.png",
+            "description": "Linguistic Trajectory Encoding (LTE) is an object-centric spatiotemporal memory representation combining natural-language descriptions, sparse spatial anchors, and visual anchors for long-horizon embodied agents.",
+            "abstract": "Embodied agents performing long-horizon tasks require a memory representation in which the state transitions of dynamic objects remain queryable in natural language across hours-to-days observation horizons. Existing systems either drop fine-grained motion (clip-level video-language embeddings), keep it only as raw coordinates (geometric SLAM), or organise it around immediate task context (agent working memories). None of them gives the agent a per-object timeline whose state transitions are themselves queryable in language. Our key contribution is Linguistic Trajectory Encoding (LTE), which compresses dynamic object motion histories via a hybrid representation combining natural language descriptions, sparse spatial anchors, and visual anchors. LTE adapts compression to motion complexity by anchoring periods without reliable observations to the last seen location, while representing motion with geometric waypoints and linguistic descriptions to preserve accuracy. To evaluate these capabilities across extended time horizons, we construct the Spatial Memory Benchmark (SMB) from EgoLife multi-day recordings, targeting capabilities absent in existing benchmarks: semantic trajectory retrieval and long-horizon object retrieval. On SMB, the LTE-based system achieves 45.3% success in semantic trajectory retrieval and 48.7% in long-horizon object retrieval, outperforming structured-memory and VLM baselines (best prior: 31.9% and 34.4%). LTE achieves trajectory compression by factors of 8.7× to 26.1× with sub-second query latency on 24 h video. On Ego4D natural-language queries, the system reaches 28.75% / 55.10% R@1/R@5, +15.80 / +31.30 pts over EgoVLPv2.",
+            "keywords": [
+              "Linguistic Trajectory Encoding",
+              "object-centric memory",
+              "spatiotemporal memory",
+              "embodied agent memory",
+              "trajectory compression",
+              "semantic trajectory retrieval",
+              "long-horizon object retrieval",
+              "Spatial Memory Benchmark"
+            ],
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Tianyidan Xie",
+                "givenName": "Tianyidan",
+                "familyName": "Xie",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#nju"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Shenyi Wang",
+                "givenName": "Shenyi",
+                "familyName": "Wang",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#nju"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Qiang Tang",
+                "givenName": "Qiang",
+                "familyName": "Tang",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#ubc"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Mingjie Wang",
+                "givenName": "Mingjie",
+                "familyName": "Wang",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#zstu"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Zhicheng Qiu",
+                "givenName": "Zhicheng",
+                "familyName": "Qiu",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#huawei"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Xuanfu Li",
+                "givenName": "Xuanfu",
+                "familyName": "Li",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#huawei"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Zhan Xu",
+                "givenName": "Zhan",
+                "familyName": "Xu",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#huawei"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Jian Yang",
+                "givenName": "Jian",
+                "familyName": "Yang",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#nju"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Lanjun Wang",
+                "givenName": "Lanjun",
+                "familyName": "Wang",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#tju"
+                }
+              },
+              {
+                "@type": "Person",
+                "name": "Zili Yi",
+                "givenName": "Zili",
+                "familyName": "Yi",
+                "affiliation": {
+                  "@id": "https://sealical.github.io/st-mem/#nju"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://sealical.github.io/st-mem/#nju",
+            "name": "Nanjing University"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://sealical.github.io/st-mem/#ubc",
+            "name": "University of British Columbia"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://sealical.github.io/st-mem/#zstu",
+            "name": "Zhejiang Sci-Tech University"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://sealical.github.io/st-mem/#huawei",
+            "name": "Huawei Technologies Co., Ltd."
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://sealical.github.io/st-mem/#tju",
+            "name": "Tianjin University"
+          }
+        ]
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="assets/site.css" />
     <script src="assets/site.js" defer></script>
@@ -81,8 +268,8 @@
         >
         <nav class="nav-links" aria-label="Main navigation">
           <a href="#method">Method</a><a href="#queries">Queries</a
-          ><a href="#results">Results</a><a href="#code">Code</a
-          ><a href="#citation">Cite</a>
+          ><a href="#results">Results</a><a href="benchmark/">Benchmark</a
+          ><a href="#code">Code</a><a href="#citation">Cite</a>
         </nav>
         <a
           class="header-paper"
@@ -111,8 +298,14 @@
           >
         </h1>
         <p class="hero-summary">
-          An object’s history, remembered in language.<br />Grounded in space.
-          Connected through time.
+          Object-centric spatiotemporal memory<br />for long-horizon embodied
+          agents.
+        </p>
+        <p class="hero-description">
+          Linguistic Trajectory Encoding (LTE) connects natural-language
+          descriptions, sparse spatial anchors, and visual evidence into
+          queryable object state histories. ST-Mem is the LTE-based memory
+          system; SMB is the paper’s long-horizon retrieval benchmark.
         </p>
         <div class="authors" aria-label="Authors in paper order">
           <span>Tianyidan Xie<sup>1,*</sup></span
@@ -149,6 +342,9 @@
           <a class="button button-secondary" href="#code"
             >Code <span class="button-badge">coming soon</span></a
           >
+          <a class="button button-text" href="benchmark/"
+            >SMB benchmark <span aria-hidden="true">↗</span></a
+          >
           <a class="button button-text" href="#citation"
             >BibTeX <span aria-hidden="true">↓</span></a
           >
@@ -156,6 +352,50 @@
         <p class="release-note">
           The paper is public. Code and installation instructions are coming
           soon.
+        </p>
+      </section>
+
+      <section
+        class="container abstract-section"
+        id="abstract"
+        aria-labelledby="abstract-title"
+      >
+        <div class="abstract-heading">
+          <h2 id="abstract-title">Abstract</h2>
+          <a
+            href="https://arxiv.org/abs/2609.04802v1"
+            target="_blank"
+            rel="noopener noreferrer"
+            >From arXiv v1 ↗</a
+          >
+        </div>
+        <p id="paper-abstract">
+          Embodied agents performing long-horizon tasks require a memory
+          representation in which the state transitions of dynamic objects
+          remain queryable in natural language across hours-to-days observation
+          horizons. Existing systems either drop fine-grained motion (clip-level
+          video-language embeddings), keep it only as raw coordinates (geometric
+          SLAM), or organise it around immediate task context (agent working
+          memories). None of them gives the agent a per-object timeline whose
+          state transitions are themselves queryable in language. Our key
+          contribution is <strong>Linguistic Trajectory Encoding</strong> (LTE),
+          which compresses dynamic object motion histories via a hybrid
+          representation combining natural language descriptions, sparse spatial
+          anchors, and visual anchors. LTE adapts compression to motion
+          complexity by anchoring periods without reliable observations to the
+          last seen location, while representing motion with geometric waypoints
+          and linguistic descriptions to preserve accuracy. To evaluate these
+          capabilities across extended time horizons, we construct the
+          <strong>Spatial Memory Benchmark</strong> (SMB) from EgoLife multi-day
+          recordings, targeting capabilities absent in existing benchmarks:
+          semantic trajectory retrieval and long-horizon object retrieval. On
+          SMB, the LTE-based system achieves 45.3% success in semantic
+          trajectory retrieval and 48.7% in long-horizon object retrieval,
+          outperforming structured-memory and VLM baselines (best prior: 31.9%
+          and 34.4%). LTE achieves trajectory compression by factors of 8.7× to
+          26.1× with sub-second query latency on 24 h video. On Ego4D
+          natural-language queries, the system reaches 28.75% / 55.10% R@1/R@5,
+          +15.80 / +31.30 pts over EgoVLPv2.
         </p>
       </section>
 
@@ -499,6 +739,11 @@
               EgoLife multi-day recordings: 300 trajectory queries and 300
               long-horizon object queries.
             </p>
+            <p>
+              <a class="light-link" href="benchmark/"
+                >SMB task definitions, protocol, and availability ↗</a
+              >
+            </p>
           </div>
           <div class="metrics" aria-label="Paper-reported headline results">
             <div class="metric">
@@ -611,9 +856,9 @@
             <p class="eyebrow">05 / THE CODE</p>
             <h2 id="code-title">Code coming soon.</h2>
             <p>
-              We are preparing a focused release of the ST-Mem memory core:
-              start with a small CPU example, then connect offline perception
-              for a real video.
+              We are preparing a focused release of the ST-Mem memory core for
+              long-term embodied agent memory and natural-language spatial
+              retrieval.
             </p>
             <div class="availability">
               <span class="availability-label">COMING SOON</span>
@@ -626,21 +871,8 @@
           </div>
           <div class="code-card">
             <div class="code-topline">
-              <span>PREVIEW · AFTER THE CODE RELEASE</span
-              ><span>Python 3.11+</span>
+              <span>PLANNED CORE RELEASE</span>
             </div>
-            <pre
-              class="command-code"
-            ><code><span class="code-comment"># From the embodied-slam checkout</span>
-python -m pip install -e '.[stmem]'
-
-<span class="code-comment"># Synthetic example · no weights or GPU</span>
-embodied-stmem demo \
-  --output outputs/stmem-demo</code></pre>
-            <p>
-              Build → save → reload → query. Use a new output directory for each
-              demo run.
-            </p>
             <div class="scope-grid">
               <div>
                 <h3>Planned scope</h3>
@@ -660,6 +892,10 @@ embodied-stmem demo \
             <p>
               The planned release focuses on core functionality, not full
               reproduction of the paper’s benchmark results.
+            </p>
+            <p class="release-scope-note">
+              The <a href="benchmark/">SMB description</a> is public; benchmark
+              annotations and evaluation scripts are not distributed here.
             </p>
           </div>
         </div>

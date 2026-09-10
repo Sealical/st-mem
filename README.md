@@ -1,45 +1,78 @@
-# ST-Mem
+# Linguistic Trajectory Encoding (LTE) — ST-Mem
 
-Project page for **Linguistic Trajectory Encoding for Efficient Long-Horizon
-Spatial Memory in Embodied Agents**.
+Official project page for **Linguistic Trajectory Encoding for Efficient
+Long-Horizon Spatial Memory in Embodied Agents**.
 
+LTE is an **object-centric spatiotemporal memory representation** for
+long-horizon embodied agents. It compresses dynamic object motion histories
+into natural-language descriptions, sparse spatial anchors, and visual anchors.
+The LTE-based ST-Mem system links object state history to spatial and visual
+evidence for semantic trajectory retrieval and long-horizon object retrieval.
+
+[Paper](https://arxiv.org/abs/2609.04802) ·
 [Project page](https://sealical.github.io/st-mem/) ·
-[Paper](https://arxiv.org/abs/2609.04802) · [BibTeX](citation.bib)
+[Spatial Memory Benchmark](https://sealical.github.io/st-mem/benchmark/) ·
+[BibTeX](citation.bib) · [Citation metadata](CITATION.cff)
 
-**Code coming soon.** This repository contains the public website only, not the
-ST-Mem implementation, model weights, training data, or evaluation pipelines.
-The page describes the planned core release; its command example is a preview
-for when that release becomes available. The paper is currently presented as
-an arXiv preprint, without a conference acceptance claim.
+- **Paper:** arXiv:2609.04802 · arXiv preprint · 2026.
+- **Benchmark:** Spatial Memory Benchmark (SMB), constructed from EgoLife recordings.
+- **Evaluation:** SMB (STR, LOR) and Ego4D (NLQ, VQ2D).
+- **Code coming soon.** This repository contains the website and benchmark
+  description, not the ST-Mem implementation, annotations, model weights, or
+  evaluation pipelines. No benchmark download is currently offered here.
 
-## Preview locally
+## What problem does LTE address?
 
-From this repository's root:
+Long-term embodied agent memory needs to retain what happened to an object,
+where it happened, and when. Clip-level video memory and raw geometric
+trajectories expose different parts of this evidence. LTE connects them in a
+language-queryable per-object history, supporting natural-language spatial
+retrieval over hours-to-days observations without scanning every clip at query
+time. The research focuses on spatiotemporal memory, object state history,
+and trajectory compression; it does not claim a general lifelong-learning agent.
 
-```bash
-python -m http.server 8765 --bind 127.0.0.1
-```
+## Method, system, and benchmark
 
-Open <http://127.0.0.1:8765/>. No build step, backend, Node packages, or GPU is
-required. The website uses plain HTML, CSS, and JavaScript, with no external
-fonts, scripts, analytics, or third-party website template.
+| Name                                 | Role                                                                                                             |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Linguistic Trajectory Encoding (LTE) | The hybrid trajectory representation: language, sparse spatial anchors, and visual anchors.                      |
+| ST-Mem                               | This research project and its LTE-based memory system, with five linked views and spatial indexing.              |
+| Spatial Memory Benchmark (SMB)       | The paper's long-horizon benchmark: Semantic Trajectory Retrieval (STR) and Long-Horizon Object Retrieval (LOR). |
 
-## Deployment and updates
+Read the [method and original framework figure](https://sealical.github.io/st-mem/#method).
+The [task illustrations](https://sealical.github.io/st-mem/#queries) are explanatory
+examples, **not live inference**.
 
-GitHub Pages publishes the `main` branch's root directory at
-<https://sealical.github.io/st-mem/>. The `.nojekyll` file keeps the site static.
-Push website changes to `main` to trigger an automatic redeployment; check the
-repository's **Actions** tab and **Settings → Pages** for the deployment result.
+## Spatial Memory Benchmark
 
-Keep `index.html`, `assets/`, `citation.bib`, `.nojekyll`, and `LICENSE` at the
-published root. If the public URL changes, update the canonical, Open Graph,
-and Twitter image metadata in `index.html` together. When the implementation
-is publicly released, replace the “Code coming soon” status with its verified
-public repository and installation links.
+SMB contains **600 queries** constructed from EgoLife multi-day recordings:
+300 Semantic Trajectory Retrieval queries and 300 Long-Horizon Object Retrieval
+queries. LOR uses lookback windows from 2 to 24 hours. SMB is distinct from the
+established Ego4D NLQ and VQ2D tasks.
 
-Paper figures open at their original resolution. Task tabs are illustrative
-examples, not live inference. Results are attributed to the paper, not claimed
-as independently reproduced by this website.
+See the [benchmark page](https://sealical.github.io/st-mem/benchmark/) or
+[benchmark README](benchmark/README.md) for task definitions, the paper-reported
+evaluation protocol, results, source attribution, and release status.
+
+## Results reported in the paper
+
+| Measurement                 | Reported result | Scope                                                                                          |
+| --------------------------- | --------------- | ---------------------------------------------------------------------------------------------- |
+| SMB STR success             | 45.3%           | 300 semantic trajectory queries; bounding-box IoU ≥ 0.3 within the ground-truth temporal span. |
+| SMB LOR success             | 48.7%           | 300 long-horizon object queries; the same success criterion.                                   |
+| LTE trajectory compression  | 8.7–26.1×       | LTE trajectory storage relative to dense trajectories, not total system storage.               |
+| Query latency on 24 h video | 0.43 s          | Single A800, after memory construction; not end-to-end video processing.                       |
+
+These are [paper-reported results](https://arxiv.org/abs/2609.04802v1), not new
+measurements or an independent reproduction by this repository.
+
+## Code availability
+
+**Code coming soon.** The planned release focuses on the memory core: LTE,
+five linked views, portable memory storage, query APIs, and offline perception
+adapters. Full benchmark reproduction, evaluation/training pipelines, audio,
+and navigation are outside that planned release. Public installation instructions
+will be added only when the implementation is available.
 
 ## Citation
 
@@ -64,3 +97,5 @@ Original website code is available under the [MIT License](LICENSE).
 Figures 1 and 2 are unmodified author-supplied images from the paper, under
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), not MIT. Preserve the
 [figure attribution](assets/README.md) when redistributing them.
+
+For website maintainers: [maintenance documentation](docs/website-maintenance.md).

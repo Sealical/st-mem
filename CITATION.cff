@@ -1,0 +1,68 @@
+cff-version: 1.2.0
+message: "For LTE, ST-Mem, or the Spatial Memory Benchmark described here, please cite the paper in preferred-citation. This repository contains the project website, not the implementation or dataset."
+title: "Linguistic Trajectory Encoding (LTE) — ST-Mem project website"
+type: software
+authors:
+  - family-names: Xie
+    given-names: Tianyidan
+  - family-names: Wang
+    given-names: Shenyi
+  - family-names: Tang
+    given-names: Qiang
+  - family-names: Wang
+    given-names: Mingjie
+  - family-names: Qiu
+    given-names: Zhicheng
+  - family-names: Li
+    given-names: Xuanfu
+  - family-names: Xu
+    given-names: Zhan
+  - family-names: Yang
+    given-names: Jian
+  - family-names: Wang
+    given-names: Lanjun
+  - family-names: Yi
+    given-names: Zili
+url: "https://sealical.github.io/st-mem/"
+repository-code: "https://github.com/Sealical/st-mem"
+keywords:
+  - Linguistic Trajectory Encoding
+  - object-centric memory
+  - spatiotemporal memory
+  - embodied agent memory
+  - trajectory compression
+  - semantic trajectory retrieval
+  - long-horizon object retrieval
+  - Spatial Memory Benchmark
+preferred-citation:
+  type: generic
+  title: "Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents"
+  authors:
+    - family-names: Xie
+      given-names: Tianyidan
+    - family-names: Wang
+      given-names: Shenyi
+    - family-names: Tang
+      given-names: Qiang
+    - family-names: Wang
+      given-names: Mingjie
+    - family-names: Qiu
+      given-names: Zhicheng
+    - family-names: Li
+      given-names: Xuanfu
+    - family-names: Xu
+      given-names: Zhan
+    - family-names: Yang
+      given-names: Jian
+    - family-names: Wang
+      given-names: Lanjun
+    - family-names: Yi
+      given-names: Zili
+  year: 2026
+  month: 9
+  doi: "10.48550/arXiv.2609.04802"
+  url: "https://arxiv.org/abs/2609.04802"
+  identifiers:
+    - type: other
+      value: "arXiv:2609.04802"
+      description: "arXiv preprint identifier"

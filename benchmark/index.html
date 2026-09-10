@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>
+      Spatial Memory Benchmark (SMB): Long-Horizon Spatiotemporal Memory for
+      Embodied Agents
+    </title>
+    <meta
+      name="description"
+      content="Spatial Memory Benchmark (SMB): 600 EgoLife queries for semantic trajectory retrieval and long-horizon object retrieval. Tasks, protocol, and paper-reported results."
+    />
+    <link rel="canonical" href="https://sealical.github.io/st-mem/benchmark/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ST-Mem" />
+    <meta property="og:title" content="Spatial Memory Benchmark (SMB)" />
+    <meta
+      property="og:description"
+      content="Evaluating object-centric spatiotemporal memory over hours-long observations. Public task description; annotations and evaluation code are not released here."
+    />
+    <meta
+      property="og:url"
+      content="https://sealical.github.io/st-mem/benchmark/"
+    />
+    <meta
+      property="og:image"
+      content="https://sealical.github.io/st-mem/assets/st_mem_teaser.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="LTE and long-horizon object memory, illustrated by Figure 1 of the paper."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spatial Memory Benchmark (SMB)" />
+    <meta
+      name="twitter:description"
+      content="600 EgoLife queries for semantic trajectory retrieval and long-horizon object retrieval. Description and paper results; no dataset download."
+    />
+    <meta
+      name="twitter:image"
+      content="https://sealical.github.io/st-mem/assets/st_mem_teaser.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="LTE and long-horizon object memory, illustrated by Figure 1 of the paper."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://sealical.github.io/st-mem/benchmark/#webpage",
+        "name": "Spatial Memory Benchmark (SMB): Long-Horizon Spatiotemporal Memory for Embodied Agents",
+        "url": "https://sealical.github.io/st-mem/benchmark/",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://sealical.github.io/st-mem/#website",
+          "url": "https://sealical.github.io/st-mem/"
+        },
+        "description": "Public description of Spatial Memory Benchmark (SMB), constructed from EgoLife recordings with 300 Semantic Trajectory Retrieval queries and 300 Long-Horizon Object Retrieval queries. Annotations and evaluation code are not released here.",
+        "about": {
+          "@type": "CreativeWork",
+          "@id": "https://sealical.github.io/st-mem/benchmark/#smb",
+          "name": "Spatial Memory Benchmark",
+          "alternateName": "SMB",
+          "description": "Benchmark for long-horizon object-centric spatiotemporal memory in embodied agents, introducing Semantic Trajectory Retrieval (STR) and Long-Horizon Object Retrieval (LOR).",
+          "subjectOf": {
+            "@type": "ScholarlyArticle",
+            "@id": "https://doi.org/10.48550/arXiv.2609.04802",
+            "url": "https://arxiv.org/abs/2609.04802",
+            "name": "Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial Memory in Embodied Agents"
+          }
+        }
+      }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="stylesheet" href="../assets/site.css" />
+    <script src="../assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="wordmark" href="../" aria-label="ST-Mem project page"
+          ><span class="brand-mark" aria-hidden="true"
+            ><i></i><i></i><i></i></span
+          >ST-Mem<span class="wordmark-note">BENCHMARK</span></a
+        >
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="../">Project</a><a href="#tasks">Tasks</a
+          ><a href="#protocol">Protocol</a><a href="#results">Results</a
+          ><a href="#availability">Availability</a>
+        </nav>
+        <a
+          class="header-paper"
+          href="https://arxiv.org/abs/2609.04802"
+          target="_blank"
+          rel="noopener noreferrer"
+          >arXiv ↗</a
+        >
+      </div>
+    </header>
+    <main id="main">
+      <section
+        class="hero container benchmark-hero"
+        id="top"
+        aria-labelledby="benchmark-title"
+      >
+        <p class="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span> TASKS INTRODUCED
+          IN THE LTE PAPER
+        </p>
+        <h1 id="benchmark-title">
+          <span class="title-main">Spatial Memory Benchmark</span
+          ><span class="title-sub"
+            >Long-horizon spatiotemporal memory<br />for embodied agents</span
+          >
+        </h1>
+        <p class="hero-description">
+          Spatial Memory Benchmark (SMB) tests whether a memory system can
+          retrieve objects by their state history and find their last occurrence
+          across hours of egocentric observations. It is constructed from
+          EgoLife multi-day recordings.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#tasks">Explore the tasks ↓</a>
+          <a class="button button-text" href="../">LTE / ST-Mem project ↗</a>
+          <a class="button button-text" href="../#citation">Cite the paper ↓</a>
+        </div>
+        <p class="release-note">
+          Public benchmark description. Annotations and evaluation code are not
+          released here.
+        </p>
+        <dl class="benchmark-facts">
+          <div>
+            <dt>600</dt>
+            <dd>Queries reported in the paper</dd>
+          </div>
+          <div>
+            <dt>2</dt>
+            <dd>Tasks: STR and LOR</dd>
+          </div>
+          <div>
+            <dt>2–24 h</dt>
+            <dd>LOR lookback windows</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section
+        class="section section-tinted"
+        id="tasks"
+        aria-labelledby="tasks-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">01 / TASK DEFINITIONS</p>
+            <h2 id="tasks-title">
+              Remember the change.<br />Retrieve the last occurrence.
+            </h2>
+            <p>
+              Two complementary tests of object-centric memory, with 300 queries
+              each.
+            </p>
+          </div>
+          <div class="benchmark-grid">
+            <article class="benchmark-card" id="str">
+              <p class="eyebrow">STR / 300 QUERIES</p>
+              <h3>Semantic Trajectory Retrieval</h3>
+              <p>
+                Locate objects matching a description of their motion or state
+                history, within optional semantic spatial regions and temporal
+                constraints.
+              </p>
+              <dl>
+                <dt>Query</dt>
+                <dd>
+                  An object state description, optionally with a place and time.
+                </dd>
+                <dt>Evidence</dt>
+                <dd>
+                  Matching object instances, valid temporal spans, and bounding
+                  boxes in supporting frames.
+                </dd>
+                <dt>Construction</dt>
+                <dd>
+                  300 queries over 232 object instances; queries may involve one
+                  or two objects.
+                </dd>
+              </dl>
+            </article>
+            <article class="benchmark-card" id="lor">
+              <p class="eyebrow">LOR / 300 QUERIES</p>
+              <h3>Long-Horizon Object Retrieval</h3>
+              <p>
+                Retrieve the last occurrence of a described object inside a
+                specified lookback window, optionally restricted to a spatial
+                region.
+              </p>
+              <dl>
+                <dt>Query</dt>
+                <dd>An object description and a temporal lookback window.</dd>
+                <dt>Evidence</dt>
+                <dd>
+                  The last observed occurrence and its bounding box within that
+                  window.
+                </dd>
+                <dt>Horizons</dt>
+                <dd>
+                  2, 6, 12, and 24 hours, with 75 queries at each horizon.
+                </dd>
+              </dl>
+            </article>
+          </div>
+          <p class="small-note">
+            Last occurrence means last observed evidence, not a guarantee of an
+            unseen object's current position. These are task definitions, not
+            executable annotation schemas or live inference.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="section container"
+        id="protocol"
+        aria-labelledby="protocol-title"
+      >
+        <div class="benchmark-copy">
+          <div class="section-heading">
+            <p class="eyebrow">02 / PAPER-REPORTED PROTOCOL</p>
+            <h2 id="protocol-title">
+              Temporal evidence<br />and spatial agreement.
+            </h2>
+          </div>
+          <p>
+            For both tasks, the paper reports <strong>success rate</strong>: a
+            retrieved frame must lie within the object's ground-truth temporal
+            span and have <strong>bounding-box IoU ≥ 0.3</strong>. The paper
+            also reports stricter IoU ≥ 0.5 results and per-horizon analysis.
+          </p>
+          <ol>
+            <li>
+              <strong>STR annotations:</strong> tracking-assisted object
+              instances and state histories are manually verified. Annotators
+              identify valid temporal spans and representative-frame boxes;
+              candidates with failed tracking are skipped.
+            </li>
+            <li>
+              <strong>LOR annotations:</strong> annotators inspect
+              chronologically ordered observations in reverse to identify the
+              latest occurrence within each lookback window.
+            </li>
+            <li>
+              <strong>Interpretation:</strong> the tracking-assisted
+              construction and skipped instances are part of the benchmark's
+              scope. The published protocol should not be confused with a
+              released scoring program.
+            </li>
+          </ol>
+          <h3>Where the observations come from</h3>
+          <p>
+            SMB is constructed from
+            <a
+              href="https://egolife-ai.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >EgoLife</a
+            >, whose source collection contains 300 hours from six participants
+            over seven days in a shared home. Individual sessions reach 50
+            hours. This is the source collection's scale, not the length of
+            every SMB query; LOR looks back at most 24 hours.
+          </p>
+          <h3>How SMB differs from Ego4D</h3>
+          <p>
+            The LTE paper also evaluates
+            <strong>Ego4D Natural Language Queries (NLQ)</strong> and
+            <strong>Visual Queries 2D (VQ2D)</strong>. Those are established
+            Ego4D tasks, not part of SMB. SMB introduces STR and LOR using
+            EgoLife recordings to study long-term embodied agent memory, object
+            state history, and natural-language video retrieval.
+          </p>
+          <p>
+            Construction and annotation details: §4.1 and Appendix A of
+            <a
+              href="https://arxiv.org/abs/2609.04802v1"
+              target="_blank"
+              rel="noopener noreferrer"
+              >arXiv:2609.04802v1</a
+            >. SMB does not evaluate general lifelong learning or robot
+            navigation.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="section section-tinted"
+        id="results"
+        aria-labelledby="results-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">03 / RESULTS IN THE PAPER</p>
+            <h2 id="results-title">SMB success rate.</h2>
+            <p>
+              Success rate (%), 300 queries per task, with bounding-box IoU ≥
+              0.3 inside the ground-truth temporal span.
+            </p>
+          </div>
+          <div
+            class="table-scroll benchmark-results"
+            role="region"
+            tabindex="0"
+            aria-label="Paper-reported SMB results, horizontally scrollable on small screens"
+          >
+            <table>
+              <caption>
+                Spatial Memory Benchmark · arXiv v1
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Method</th>
+                  <th scope="col">STR ↑</th>
+                  <th scope="col">LOR ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Qwen3-VL-8B + Grounding-DINO</th>
+                  <td>21.5</td>
+                  <td>25.1</td>
+                </tr>
+                <tr>
+                  <th scope="row">Qwen3-VL-235B + Grounding-DINO</th>
+                  <td>31.9</td>
+                  <td>34.4</td>
+                </tr>
+                <tr>
+                  <th scope="row">KFMem (3D-Mem-style)</th>
+                  <td>19.8</td>
+                  <td>33.8</td>
+                </tr>
+                <tr>
+                  <th scope="row">VideoAgent</th>
+                  <td>24.7</td>
+                  <td>30.5</td>
+                </tr>
+                <tr class="ours-row">
+                  <th scope="row">LTE-based system (ours)</th>
+                  <td>45.3</td>
+                  <td>48.7</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="small-note">
+            Source: §4 of
+            <a
+              href="https://arxiv.org/abs/2609.04802v1"
+              target="_blank"
+              rel="noopener noreferrer"
+              >the paper</a
+            >. These are paper-reported results, not an independently reproduced
+            leaderboard or new measurements from this website.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="section container"
+        id="availability"
+        aria-labelledby="availability-title"
+      >
+        <div class="benchmark-copy">
+          <div class="section-heading">
+            <p class="eyebrow">04 / AVAILABILITY AND CITATION</p>
+            <h2 id="availability-title">
+              Description public.<br />Data not released here.
+            </h2>
+          </div>
+          <div class="availability benchmark-status">
+            <span class="availability-label">DESCRIPTION ONLY</span>
+            <p>
+              SMB annotations and evaluation scripts are not released here. No
+              dataset-release date is announced.
+            </p>
+          </div>
+          <p>
+            The planned <a href="../#code">ST-Mem memory-core release</a> is
+            separate from benchmark evaluation code. This website does not
+            distribute source video, model weights, or SMB query annotations,
+            and it does not grant dataset access or redistribution rights.
+          </p>
+          <p>
+            For source recordings, consult the original
+            <a
+              href="https://egolife-ai.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >EgoLife project</a
+            >
+            and its access terms. EgoLife is the work of Jingkang Yang and
+            collaborators (CVPR 2025); Ego4D is the work of Kristen Grauman and
+            collaborators (CVPR 2022).
+          </p>
+          <p>
+            For SMB, cite
+            <em
+              >Linguistic Trajectory Encoding for Efficient Long-Horizon Spatial
+              Memory in Embodied Agents</em
+            >, by Tianyidan Xie and collaborators, arXiv:2609.04802. There is no
+            separate SMB DOI claimed here.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="../#citation"
+              >Cite the paper ↓</a
+            ><a class="button button-text" href="../citation.bib" download
+              >Download BibTeX ↓</a
+            ><a
+              class="button button-text"
+              href="https://github.com/Sealical/st-mem/blob/main/benchmark/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Benchmark README ↗</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="container site-footer">
+      <a class="wordmark" href="../">ST-Mem</a>
+      <div>
+        <p>
+          SMB is introduced in the LTE paper by Tianyidan Xie and collaborators
+          · 2026.
+        </p>
+        <p>
+          Website code: <a href="../LICENSE">MIT</a>. This license does not
+          cover source datasets or unpublished annotations.
+        </p>
+      </div>
+      <a class="back-top" href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>
