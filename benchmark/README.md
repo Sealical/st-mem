@@ -3,7 +3,8 @@
 **Benchmarking long-horizon spatiotemporal memory for embodied agents.**
 
 SMB is introduced in [Linguistic Trajectory Encoding for Efficient Long-Horizon
-Spatial Memory in Embodied Agents](https://arxiv.org/abs/2609.04802). It tests
+Spatial Memory in Embodied Agents](https://arxiv.org/abs/2609.04802),
+**accepted at NeurIPS 2026**. It tests
 whether an embodied memory system can retrieve objects by their state history
 and recover their last occurrence over hours-long observations.
 

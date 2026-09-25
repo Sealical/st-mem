@@ -40,8 +40,15 @@ update every one of these references together.
 
 ## Content and release boundaries
 
-The page presents an arXiv preprint, not an accepted conference paper. It must
-continue to say **Code coming soon** until there is a verified public implementation.
+The paper is **accepted at NeurIPS 2026**, as confirmed by the author on
+2026-09-26. Keep that status consistent in the README, project and benchmark
+pages, share descriptions, JSON-LD, citation files, and GitHub About.
+The citation still identifies the arXiv version and notes the acceptance;
+do not invent proceedings volume, pages, a conference DOI, presentation type,
+or an exact acceptance date. Update bibliographic fields when the proceedings
+record is available, preserving the arXiv identifier.
+
+The site must continue to say **Code coming soon** until there is a verified public implementation.
 Do not add unusable installation commands, a private code link, or a fake live Demo.
 When code becomes public, verify the actual branch and Quickstart before linking it.
 
@@ -60,7 +67,7 @@ Figures remain pixel-identical to the author's originals; preserve
 3. Parse JSON-LD and XML. Validate `CITATION.cff` against CFF 1.2.0; keep title,
    DOI, author order, and date consistent with `citation.bib` and the visible page.
 4. Ensure no private paths, credentials, unpublished data, fake ORCID identifiers,
-   conference acceptance claims, or unavailable download links enter the public commit.
+   unverified publication details, or unavailable download links enter the public commit.
 5. After deployment, check anonymous HTTPS access to both pages, the sitemap,
    BibTeX, and original images. A successful deployment is not proof of search indexing.
 
