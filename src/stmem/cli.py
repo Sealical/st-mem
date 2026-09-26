@@ -1,4 +1,4 @@
-"""Offline CLI for the public memory-core demo. No perception models are loaded."""
+"""ST-Mem core demo and optional local video perception. Models load only on request."""
 
 from __future__ import annotations
 
@@ -36,11 +36,28 @@ def _query(args, parser):
             lookback_seconds=args.lookback,
             **common,
         )
-    if not args.feature_file:
-        parser.error("VQ2D requires --feature-file with feature_space and feature fields")
-    data = json.loads(Path(args.feature_file).read_text(encoding="utf-8"))
-    if not isinstance(data, dict) or not {"feature", "feature_space"} <= data.keys():
-        parser.error("feature JSON must contain feature and feature_space")
+    if bool(args.feature_file) == bool(args.image):
+        parser.error("VQ2D requires exactly one of --feature-file or --image")
+    if args.feature_file:
+        data = json.loads(Path(args.feature_file).read_text(encoding="utf-8"))
+        if not isinstance(data, dict) or not {"feature", "feature_space"} <= data.keys():
+            parser.error("feature JSON must contain feature and feature_space")
+    else:
+        if not args.dinov2_checkpoint or not args.dinov2_repo:
+            parser.error("--image requires --dinov2-checkpoint and --dinov2-repo")
+        from stmem.dataset import load_rgb
+        from stmem.perception.dinov2 import DINOv2Encoder
+        from stmem.perception.runtime import seed_everything
+
+        seed_everything(42)
+        encoder = DINOv2Encoder(args.dinov2_checkpoint, device=args.device, repo=args.dinov2_repo)
+        try:
+            data = {
+                "feature": encoder.forward({"image": load_rgb(args.image)})["embedding"],
+                "feature_space": encoder.feature_space,
+            }
+        finally:
+            encoder.close()
     return engine.query_vq2d(
         data["feature"], feature_space=data["feature_space"], time_range=time_range, **common
     )
@@ -56,7 +73,10 @@ def main(argv=None):
     build.add_argument(
         "--output", type=Path, required=True, help="New directory for memory and crops"
     )
-    build.add_argument("--captions", choices=["provided", "template"], default="provided")
+    build.add_argument("--captions", choices=["provided", "template", "vlm"], default="provided")
+    build.add_argument("--vlm-checkpoint", help="Complete local Qwen3-VL model snapshot")
+    build.add_argument("--device", default="cuda:0")
+    build.add_argument("--max-new-tokens", type=int, default=100)
     inspect = commands.add_parser("inspect", help="Inspect the saved memory and five view counts")
     inspect.add_argument("--memory", type=Path, required=True)
     query = commands.add_parser("query", help="Run one query against a saved memory")
@@ -72,24 +92,57 @@ def main(argv=None):
     query.add_argument("--as-of", type=float)
     query.add_argument("--top-k", type=int, default=5)
     query.add_argument("--feature-file", type=Path, help="JSON with feature_space and feature")
+    query.add_argument("--image", type=Path, help="Object crop to encode with DINOv2")
+    query.add_argument("--dinov2-checkpoint")
+    query.add_argument("--dinov2-repo")
+    query.add_argument("--device", default="cuda:0")
     verify = commands.add_parser(
         "verify", help="Check portable reload and four fresh-process queries"
     )
     verify.add_argument("--memory", type=Path, required=True)
     verify.add_argument("--object-id", default="cup_1")
     verify.add_argument("--text", default="cup")
+    from stmem.perception.cli import add_commands
+
+    add_commands(commands)
     args = parser.parse_args(argv)
     try:
         if args.command == "demo":
             result = run_demo(args.output)
         elif args.command == "build":
-            result = {
-                "memory": str(
-                    build_memory(
-                        args.observations, args.output, params=STMemParams(captions=args.captions)
+            if (args.captions == "vlm") != bool(args.vlm_checkpoint):
+                parser.error("Use --captions vlm together with --vlm-checkpoint")
+            if args.max_new_tokens < 1:
+                parser.error("--max-new-tokens must be positive")
+            if args.output.exists():
+                raise FileExistsError("Choose a new memory output directory")
+            captioner = None
+            try:
+                if args.captions == "vlm":
+                    from stmem.perception.captioner import MotionCaptioner
+                    from stmem.perception.runtime import seed_everything
+
+                    seed_everything(42)
+                    captioner = MotionCaptioner(
+                        args.vlm_checkpoint, args.device, max_new_tokens=args.max_new_tokens
                     )
-                )
-            }
+                result = {
+                    "memory": str(
+                        build_memory(
+                            args.observations,
+                            args.output,
+                            params=STMemParams(captions=args.captions),
+                            captioner=captioner,
+                        )
+                    )
+                }
+            finally:
+                if captioner is not None:
+                    captioner.close()
+        elif args.command == "video":
+            from stmem.perception.cli import run
+
+            result = run(args)
         elif args.command == "inspect":
             memory = load_memory(args.memory)
             result = {
@@ -114,6 +167,10 @@ def main(argv=None):
             result = _query(args, parser)
     except (OSError, ValueError) as error:
         parser.exit(2, f"stmem: {error}\n")
+    except ImportError as error:
+        parser.exit(
+            2, f"stmem: optional runtime is unavailable ({error}). See docs/video-demo.md.\n"
+        )
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
 

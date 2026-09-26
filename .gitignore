@@ -18,3 +18,8 @@ references/
 *.mp4
 *.npy
 *.npz
+*.exr
+*.zip
+*.mov
+*.avi
+*.mkv

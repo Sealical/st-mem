@@ -84,7 +84,7 @@ leaderboard** or measurements from this website.
 | Resource                                     | Status                                                                          |
 | -------------------------------------------- | ------------------------------------------------------------------------------- |
 | Paper and benchmark description              | Public.                                                                         |
-| ST-Mem memory-core implementation            | [CPU demo available](../docs/demo.md). Separate from benchmark evaluation code. |
+| ST-Mem implementation                       | [CPU demo](../docs/demo.md) and [real-video integrations](../docs/video-demo.md). Separate from benchmark evaluation code. |
 | SMB query annotations and evaluation scripts | Not released here.                                                              |
 | EgoLife source recordings                    | Not redistributed. Consult the original EgoLife project for access and terms.   |
 

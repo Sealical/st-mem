@@ -52,7 +52,7 @@ including components outside the core demo.
 
 ## Code
 
-This repository contains the ST-Mem project website and demo. [Run the demo](docs/demo.md).
+This repository contains the ST-Mem project website and demo. [CPU demo](docs/demo.md) · [Real-video demo](docs/video-demo.md).
 
 ## Citation
 
@@ -72,6 +72,8 @@ This repository contains the ST-Mem project website and demo. [Run the demo](doc
 
 ---
 
-Website and demo code: [MIT](LICENSE) · Original paper figures:
+Website and demo code: [MIT](LICENSE) · [Model dependencies](THIRD_PARTY_NOTICES.md)
+
+Original paper figures:
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 ([attribution](assets/README.md)).

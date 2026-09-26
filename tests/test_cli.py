@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from stmem import load_memory
+from stmem import STMemParams, load_memory
 from stmem.pipeline import build_memory, run_demo
 from stmem.verify import verify
 
@@ -129,3 +129,50 @@ def test_imports_do_not_load_models_or_private_framework(tmp_path):
     )
     subprocess.run([sys.executable, "-c", code], cwd=tmp_path, check=True)
     assert importlib.util.find_spec("stmem") is not None
+
+
+def test_vlm_build_requires_explicit_backend_and_runs_injected_captioner(demo):
+    _result, root = demo
+    observations = root / "demo/observations/observations.json"
+    with pytest.raises(ValueError, match="explicit captioner"):
+        build_memory(observations, root / "missing", params=STMemParams(captions="vlm"))
+    calls = []
+
+    def captioner(label, kind, samples, image_getter):
+        calls.append((label, kind))
+        assert image_getter(samples[0].frame_id) is not None
+        return f"The {label} is visible."
+
+    path = build_memory(
+        observations, root / "captioned", params=STMemParams(captions="vlm"), captioner=captioner
+    )
+    assert calls and load_memory(path).objects
+    process = invoke(
+        "build",
+        "--observations",
+        observations,
+        "--output",
+        root / "invalid",
+        "--captions",
+        "vlm",
+        cwd=root,
+        check=False,
+    )
+    assert process.returncode == 2 and "--vlm-checkpoint" in process.stderr
+    assert not (root / "invalid").exists()
+
+
+def test_image_query_requires_explicit_dino_checkpoint(demo):
+    result, root = demo
+    process = invoke(
+        "query",
+        "--memory",
+        result["memory"],
+        "--type",
+        "vq2d",
+        "--image",
+        "missing.png",
+        cwd=root,
+        check=False,
+    )
+    assert process.returncode == 2 and "--dinov2-checkpoint" in process.stderr

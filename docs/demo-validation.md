@@ -3,7 +3,7 @@
 The release checks focus on functionality and portable installation. They do
 not reproduce benchmark scores or establish retrieval accuracy.
 
-## Release check on 2026-09-26
+## Initial CPU release check on 2026-09-26
 
 On Linux with Python 3.11.15, all 33 core and CLI tests passed. The same 33 tests
 also passed against the installed wheel from outside the source checkout.
@@ -48,3 +48,7 @@ distribution. CI repeats installation, core tests, and the wheel smoke test.
 
 Only synthetic inputs are part of this release. No model weights, private
 footage, cached research outputs, or benchmark evaluation assets are included.
+
+Version 0.2.0 adds optional real-video inference adapters. See the separate
+[video validation record](video-validation.md) for model-backed checks and
+their limits. The CPU installation remains model independent.

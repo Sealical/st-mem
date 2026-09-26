@@ -19,7 +19,7 @@
     />
     <meta
       property="og:description"
-      content="NeurIPS 2026 · Accepted. Object-centric spatiotemporal memory through language, spatial anchors, and visual evidence. Explore LTE, SMB, and the runnable CPU demo."
+      content="NeurIPS 2026 · Accepted. Object-centric spatiotemporal memory through language, spatial anchors, and visual evidence. Explore LTE, SMB, the CPU demo, and real-video integrations."
     />
     <link rel="canonical" href="https://sealical.github.io/st-mem/" />
     <meta property="og:url" content="https://sealical.github.io/st-mem/" />
@@ -41,7 +41,7 @@
     />
     <meta
       name="twitter:description"
-      content="NeurIPS 2026 · Accepted. Object-centric spatiotemporal memory through language, spatial anchors, and visual evidence. Explore LTE, SMB, and the runnable CPU demo."
+      content="NeurIPS 2026 · Accepted. Object-centric spatiotemporal memory through language, spatial anchors, and visual evidence. Explore LTE, SMB, the CPU demo, and real-video integrations."
     />
     <meta
       name="twitter:image"
@@ -228,13 +228,13 @@
           {
             "@type": "SoftwareSourceCode",
             "@id": "https://sealical.github.io/st-mem/#demo",
-            "name": "ST-Mem core demo",
-            "description": "Standalone CPU demo of LTE, five linked memory views, and four query APIs using synthetic observations. No model inference or benchmark evaluation.",
+            "name": "ST-Mem core and real-video demos",
+            "description": "CPU demo of LTE, five linked memory views, and four query APIs using synthetic observations. Optional real-video integrations provide SAM3 tracking, ViPE geometry, DINOv2 features, and Qwen3-VL descriptions. No benchmark evaluation.",
             "codeRepository": "https://github.com/Sealical/st-mem",
             "url": "https://github.com/Sealical/st-mem/blob/main/docs/demo.md",
             "programmingLanguage": "Python",
             "runtimePlatform": "Python 3.11+",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "license": "https://github.com/Sealical/st-mem/blob/main/LICENSE"
           },
           {
@@ -529,9 +529,9 @@
             </a>
             <figcaption>
               The paper’s full architecture organizes shared object records into
-              five complementary views. The public demo implements the offline
-              memory core. Video perception, audio, and the complete evaluation
-              pipeline are outside its scope.
+              five complementary views. The public code includes the memory core
+              and optional video perception integrations. Audio, navigation, and
+              the complete evaluation pipeline remain outside its scope.
             </figcaption>
           </figure>
         </div>
@@ -855,17 +855,18 @@
         <div class="code-layout">
           <div class="section-heading">
             <p class="eyebrow">05 / THE DEMO</p>
-            <h2 id="code-title">Run the core demo.</h2>
+            <h2 id="code-title">Run ST-Mem locally.</h2>
             <p>
-              Build, save, reload, and query an LTE memory locally. The
-              standalone command-line demo runs on CPU without model weights or
-              API keys.
+              Build, save, reload, and query an LTE memory. Start with the
+              model-free CPU example, or process your own video with the
+              optional GPU perception pipeline.
             </p>
             <div class="availability">
               <span class="availability-label">AVAILABLE</span>
               <p>
-                The demo uses synthetic observations and executes the memory
-                core. It is not a live browser demo or benchmark reproduction.
+                The CPU demo uses synthetic observations. The video path uses
+                local model checkpoints. Neither is a live browser demo or
+                benchmark reproduction.
               </p>
             </div>
             <a
@@ -873,32 +874,40 @@
               href="https://github.com/Sealical/st-mem/blob/main/docs/demo.md"
               target="_blank"
               rel="noopener noreferrer"
-              >Install and run <span aria-hidden="true">↗</span></a
+              >CPU quickstart <span aria-hidden="true">↗</span></a
+            >
+            <a
+              class="text-link"
+              href="https://github.com/Sealical/st-mem/blob/main/docs/video-demo.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Real-video guide <span aria-hidden="true">↗</span></a
             >
           </div>
           <div class="code-card">
             <div class="code-topline">
-              <span>OFFLINE CPU DEMO</span>
+              <span>CORE + VIDEO INTEGRATIONS</span>
             </div>
             <div class="scope-grid">
               <div>
                 <h3>Included</h3>
                 <p>
                   LTE · five linked views<br />Portable memory · four query
-                  APIs<br />Synthetic observation generator
+                  APIs<br />SAM3 tracking · ViPE geometry<br />DINOv2 features ·
+                  Qwen3-VL descriptions
                 </p>
               </div>
               <div>
                 <h3>Outside this demo</h3>
                 <p>
-                  Video perception / model inference<br />Benchmark evaluation /
+                  Model weights / source footage<br />Benchmark evaluation /
                   training<br />Audio and navigation
                 </p>
               </div>
             </div>
             <p>
-              The demo validates core functionality. Paper-reported benchmark
-              results are not reproduced by this example.
+              The video path requires CUDA and separate model environments.
+              Paper-reported benchmark results are not reproduced by these demos.
             </p>
             <p class="release-scope-note">
               The <a href="benchmark/">SMB description</a> is public. Benchmark

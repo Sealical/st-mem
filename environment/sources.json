@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "note": "External inference dependencies, not vendored or relicensed. Check out these commits in ignored references/ directories.",
+  "sam3": {
+    "url": "https://github.com/facebookresearch/sam3.git",
+    "commit": "660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7"
+  },
+  "vipe": {
+    "url": "https://github.com/nv-tlabs/vipe.git",
+    "commit": "95a8816947602ddc26fcb7a80bea4f9313059578"
+  },
+  "dinov2": {
+    "url": "https://github.com/facebookresearch/dinov2.git",
+    "commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8"
+  }
+}

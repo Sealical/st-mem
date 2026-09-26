@@ -1,0 +1,7 @@
+# A separate environment is required: ViPE 1.2.0 requires transformers<5.
+numpy==1.26.4
+torch==2.7.1
+torchvision==0.22.1
+transformers==4.57.6
+opencv-python==4.11.0.86
+OpenEXR==3.2.12

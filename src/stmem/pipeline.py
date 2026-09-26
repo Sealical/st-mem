@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from pathlib import Path
 
 from stmem import MemoryViews, QueryEngine, STMemBuilder, STMemParams, load_memory, save_memory
@@ -23,13 +24,14 @@ def build_memory(
     output: str | Path,
     *,
     params: STMemParams | None = None,
+    captioner: Callable | None = None,
 ) -> Path:
     """Build from an observation manifest into a new directory. Never overwrite outputs."""
     manifest = Path(observations).resolve()
     source = ObservationDataset(str(manifest.parent), manifest.name)
     params = params or STMemParams()
-    if params.captions == "vlm":
-        raise ValueError("This demo uses provided captions or debug templates, not VLM inference")
+    if params.captions == "vlm" and captioner is None:
+        raise ValueError("VLM captions require an explicit captioner or --vlm-checkpoint")
     directory = Path(output).resolve()
     directory.mkdir(parents=True, exist_ok=False)
     builder = STMemBuilder(
@@ -38,6 +40,7 @@ def build_memory(
         feature_space=source.sequence.feature_space,
         captions=source.sequence.captions,
         image_getter=source.image_by_id,
+        captioner=captioner,
         provenance=source.sequence.provenance,
     )
     for packet in source:

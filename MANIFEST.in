@@ -1,3 +1,4 @@
-include LICENSE README.md pyproject.toml constraints-demo.txt
-include docs/demo.md docs/demo-validation.md
+include LICENSE THIRD_PARTY_NOTICES.md README.md pyproject.toml constraints-demo.txt
+include docs/demo.md docs/demo-validation.md docs/video-demo.md docs/video-validation.md
+recursive-include environment *.txt *.json
 recursive-include tests *.py

@@ -48,11 +48,12 @@ Do not invent proceedings volume, pages, a conference DOI, presentation type,
 or an exact acceptance date. Update bibliographic fields when the proceedings
 record is available, preserving the arXiv identifier.
 
-The public repository now includes a runnable offline CPU demo. Link to its
-verified [installation guide](demo.md), not the private integration repository.
-Describe it as a core demo using synthetic observations. Do not present it as a
-browser inference service, video perception pipeline, or full paper reproduction.
-Run package tests and a clean wheel install when changing demo code.
+The public repository includes a synthetic [CPU core demo](demo.md) and optional
+[real-video integrations](video-demo.md) for SAM3, ViPE, DINOv2, and Qwen3-VL.
+Link to these public guides, not the private integration repository. Distinguish
+the model-free core example from the GPU video path with separate environments
+and local checkpoints. Neither is a browser inference service or full paper
+reproduction. Run package tests and a clean wheel install when changing demo code.
 
 SMB annotations, evaluation scripts, model weights, and source video are not
 distributed by this site. Do not label a description-only page as a downloadable

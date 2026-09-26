@@ -4,6 +4,9 @@ A standalone command-line demo of Linguistic Trajectory Encoding (LTE), five
 linked memory views, and four query APIs. Python 3.11 or newer is required.
 No GPU, Torch, model weights, external checkout, or API key is needed.
 
+For SAM3 tracking, ViPE geometry, DINOv2 features, and Qwen3-VL descriptions on
+your own video, use the separate [real-video guide](video-demo.md).
+
 ## Install and run
 
 ```bash
@@ -101,10 +104,11 @@ The Python API exposes `STMemBuilder`, `STMemParams`, `MemoryViews`,
 
 ## Scope
 
-This release provides the offline memory core. It does not include video
-perception, model inference, a browser UI, benchmark annotations, evaluation
-drivers, training, audio, or navigation. The full research framework figure
-contains components outside this demo.
+This CPU example exercises the offline memory core with synthetic observations.
+The repository also provides optional [video perception integrations](video-demo.md).
+Neither path includes a browser UI, benchmark annotations, evaluation drivers,
+training, audio, or navigation. The full research framework figure contains
+components outside these demos.
 
 NLQ uses BM25 over stored text. Spatial and temporal filters are explicit, not
 automatically parsed from a question. VQ2D compares supplied features in the same
