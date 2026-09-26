@@ -8,7 +8,7 @@ for Efficient Long-Horizon Spatial Memory in Embodied Agents**. 2026.
 [arXiv:2609.04802v1](https://arxiv.org/abs/2609.04802v1).
 
 The authors supplied the original PNG files from the arXiv submission. They are
-reproduced without pixel edits, cropping or regeneration; CSS scales their display.
+reproduced without pixel edits, cropping or regeneration. CSS scales their display.
 The paper is available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 This attribution and the original paper citation should accompany redistribution.
 These figures are not relicensed under the software's MIT license.

@@ -12,7 +12,7 @@ python -m http.server 8765 --bind 127.0.0.1
 ```
 
 Open <http://127.0.0.1:8765/> and <http://127.0.0.1:8765/benchmark/>.
-On a remote machine, forward this loopback port over SSH; do not expose a
+On a remote machine, forward this loopback port over SSH. Do not expose a
 research server just to preview the static site. No build step, backend, Node
 packages, model weights, or GPU is required.
 
@@ -33,7 +33,7 @@ Main content files:
 - `assets/`: original styles/scripts and author-supplied paper figures.
 - `sitemap.xml`: the two canonical research pages only.
 
-Keep URLs relative for local assets and internal links; the site must work under
+Keep URLs relative for local assets and internal links. The site must work under
 the `/st-mem/` subpath. Canonical, Open Graph, Twitter, JSON-LD and sitemap URLs
 must instead use the absolute public HTTPS address. If that address changes,
 update every one of these references together.
@@ -43,8 +43,8 @@ update every one of these references together.
 The paper is **accepted at NeurIPS 2026**, as confirmed by the author on
 2026-09-26. Keep that status consistent in the README, project and benchmark
 pages, share descriptions, JSON-LD, citation files, and GitHub About.
-The citation still identifies the arXiv version and notes the acceptance;
-do not invent proceedings volume, pages, a conference DOI, presentation type,
+The citation still identifies the arXiv version and notes the acceptance.
+Do not invent proceedings volume, pages, a conference DOI, presentation type,
 or an exact acceptance date. Update bibliographic fields when the proceedings
 record is available, preserving the arXiv identifier.
 
@@ -56,15 +56,15 @@ SMB annotations, evaluation scripts, model weights, and source video are not
 distributed by this site. Do not label a description-only page as a downloadable
 dataset or invent dataset access, licensing, annotation schemas, or release dates.
 Paper-reported measurements must remain distinguished from functional code tests.
-Figures remain pixel-identical to the author's originals; preserve
+Figures remain pixel-identical to the author's originals. Preserve
 [their attribution](../assets/README.md) and the separate MIT/CC BY 4.0 boundaries.
 
 ## Pre-deployment checks
 
-1. Check both HTML pages at 1440, 768, 390, and 320 px; no horizontal page overflow.
+1. Check both HTML pages at 1440, 768, 390, and 320 px for horizontal page overflow.
 2. Check cross-page navigation, anchor links, figures, task tabs, citation copy/download,
    and reading with JavaScript disabled. The abstract must not require a click to load.
-3. Parse JSON-LD and XML. Validate `CITATION.cff` against CFF 1.2.0; keep title,
+3. Parse JSON-LD and XML. Validate `CITATION.cff` against CFF 1.2.0. Keep title,
    DOI, author order, and date consistent with `citation.bib` and the visible page.
 4. Ensure no private paths, credentials, unpublished data, fake ORCID identifiers,
    unverified publication details, or unavailable download links enter the public commit.
@@ -86,7 +86,7 @@ Figures remain pixel-identical to the author's originals; preserve
    Requests and sitemaps do not guarantee crawling, indexing, ranking, or AI citations.
 
 The account-wide `https://sealical.github.io/robots.txt` returned 404 on
-2026-09-10; no crawler exclusion was found there. A file at `/st-mem/robots.txt`
+2026-09-10. No crawler exclusion was found there. A file at `/st-mem/robots.txt`
 would not control this origin. Do not change the personal site's root repository
 or account-wide crawler rules as part of an ordinary project-page update.
 

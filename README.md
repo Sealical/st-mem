@@ -16,13 +16,13 @@
 
 **Linguistic Trajectory Encoding (LTE)** builds **object-centric spatiotemporal
 memory** for long-horizon embodied agents. It compresses object motion histories
-into natural-language descriptions, sparse spatial anchors, and visual evidence—
-making **what happened, where, and when** queryable across hours to days.
+into natural-language descriptions, sparse spatial anchors, and visual evidence.
+This makes **what happened, where, and when** queryable across hours to days.
 
 ![LTE teaser: an egocentric observation history becomes per-object linguistic trajectories linked to spatial anchors and visual evidence.](assets/st_mem_teaser.png)
 
 _From long observations to queryable object histories. Original teaser from the
-[paper](https://arxiv.org/abs/2609.04802v1); numbers are paper-reported results.
+[paper](https://arxiv.org/abs/2609.04802v1). Numbers are paper-reported results.
 [View full resolution](assets/st_mem_teaser.png)._
 
 ## Highlights
@@ -40,11 +40,11 @@ _From long observations to queryable object histories. Original teaser from the
 
 ## Method
 
-ST-Mem is the LTE-based memory system. Five linked views—Object, Scene, Text,
-Event, and Image—connect shared object records to language, spatial, and visual
-evidence.
+ST-Mem is the LTE-based memory system. Its five linked views are Object, Scene,
+Text, Event, and Image. They connect shared object records to language, spatial,
+and visual evidence.
 
-![LTE-centric framework: perception feeds an object-centric memory with language, spatial and visual anchors; five linked views support the query tasks.](assets/st_mem_framework.png)
+![LTE-centric framework: perception feeds an object-centric memory with language, spatial and visual anchors. Five linked views support the query tasks.](assets/st_mem_framework.png)
 
 _Full research architecture from the [paper](https://arxiv.org/abs/2609.04802v1),
 including components outside the planned core release.
@@ -52,19 +52,9 @@ including components outside the planned core release.
 
 ## Code
 
-**Code coming soon.** This repository hosts the project website, not the
-implementation. The planned release focuses on a runnable memory-core demo:
-LTE, five linked views, portable storage, query APIs, and offline perception
-adapters. Full benchmark reproduction and evaluation/training pipelines are
-outside its scope; SMB annotations are not released here.
+This repository is for the ST-Mem project website and demo. Demo code is coming soon.
 
 ## Citation
-
-If you build on LTE, ST-Mem, or SMB, please cite our paper.
-[Download BibTeX](citation.bib) · [Citation metadata](CITATION.cff)
-
-<details>
-<summary>BibTeX · NeurIPS 2026 accepted paper</summary>
 
 ```bibtex
 @misc{xie2026linguistictrajectory,
@@ -79,11 +69,6 @@ If you build on LTE, ST-Mem, or SMB, please cite our paper.
   url = {https://arxiv.org/abs/2609.04802}
 }
 ```
-
-The citation points to the arXiv version; proceedings metadata will be added
-when available.
-
-</details>
 
 ---
 

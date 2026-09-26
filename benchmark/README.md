@@ -21,19 +21,19 @@ announced dataset-release date.
 
 SMB is constructed from [EgoLife](https://egolife-ai.github.io/) multi-day
 egocentric recordings. The paper describes EgoLife's 300 hours across six
-participants over seven days; this is the source collection, not a claim that
-every SMB query spans the entire collection. Individual sessions reach 50 hours;
+participants over seven days. This is the source collection, not a claim that
+every SMB query spans the entire collection. Individual sessions reach 50 hours.
 SMB's LOR lookback windows are 2, 6, 12, and 24 hours.
 
-| Task                                | Queries                           | What is retrieved?                                                                               | Query constraints                                                                     |
-| ----------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
-| Semantic Trajectory Retrieval (STR) | 300, over 232 object instances    | Objects matching a described motion or state history, with supporting frames and bounding boxes. | Object state description; optional semantic spatial regions and temporal constraints. |
-| Long-Horizon Object Retrieval (LOR) | 300; 75 for each lookback horizon | The last occurrence of a described object within the requested lookback window.                  | Object description, lookback window, and optional spatial constraints.                |
+| Task                                | Queries                           | What is retrieved?                                                                               | Query constraints                                                                         |
+| ----------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| Semantic Trajectory Retrieval (STR) | 300, over 232 object instances    | Objects matching a described motion or state history, with supporting frames and bounding boxes. | Object state description with optional semantic spatial regions and temporal constraints. |
+| Long-Horizon Object Retrieval (LOR) | 300, with 75 per lookback horizon | The last occurrence of a described object within the requested lookback window.                  | Object description, lookback window, and optional spatial constraints.                    |
 
 STR examples involve one or two objects, such as a book being put into a
 backpack. LOR is about the latest observed occurrence, not a claim to know an
 object's current position when it is off camera. This description summarizes
-the published task definitions; it does not define a new annotation-file schema.
+the published task definitions. It does not define a new annotation-file schema.
 
 ## Evaluation protocol reported in the paper
 
@@ -41,11 +41,11 @@ the published task definitions; it does not define a new annotation-file schema.
   object's ground-truth temporal span, with bounding-box IoU ≥ 0.3.
 - STR annotations contain verified object instances, valid temporal spans,
   and representative-frame boxes. Ground truth is constructed with tracking
-  assistance and manual verification; instances with failed tracking are skipped.
+  assistance and manual verification. Instances with failed tracking are skipped.
 - LOR annotation checks observations in reverse chronological order to identify
   the last occurrence and its box inside each lookback window.
 - The paper also reports IoU ≥ 0.5 results and per-horizon analysis. Consult
-  the paper for those settings; this repository does not offer a scoring implementation.
+  the paper for those settings. This repository does not offer a scoring implementation.
 
 The tracking-assisted annotation process and skipped instances matter when
 interpreting the benchmark. See §4.1 and Appendix A of the
@@ -84,9 +84,9 @@ leaderboard** or measurements from this website.
 | Resource                                     | Status                                                                        |
 | -------------------------------------------- | ----------------------------------------------------------------------------- |
 | Paper and benchmark description              | Public.                                                                       |
-| ST-Mem memory-core implementation            | Code coming soon; separate from benchmark evaluation code.                    |
+| ST-Mem memory-core implementation            | Code coming soon. Separate from benchmark evaluation code.                    |
 | SMB query annotations and evaluation scripts | Not released here.                                                            |
-| EgoLife source recordings                    | Not redistributed; consult the original EgoLife project for access and terms. |
+| EgoLife source recordings                    | Not redistributed. Consult the original EgoLife project for access and terms. |
 
 EgoLife is the work of Jingkang Yang and collaborators, _EgoLife: Towards
 Egocentric Life Assistant_, CVPR 2025. Ego4D is the work of Kristen Grauman

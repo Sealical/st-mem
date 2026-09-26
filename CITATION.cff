@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "For LTE, ST-Mem, or the Spatial Memory Benchmark described here, please cite the paper in preferred-citation. This repository contains the project website, not the implementation or dataset."
-title: "Linguistic Trajectory Encoding (LTE) — ST-Mem project website"
+title: "Linguistic Trajectory Encoding (LTE): ST-Mem project website"
 type: software
 authors:
   - family-names: Xie
@@ -60,7 +60,7 @@ preferred-citation:
       given-names: Zili
   year: 2026
   month: 9
-  notes: "Accepted at NeurIPS 2026. This citation refers to the arXiv version; proceedings metadata will be added when available."
+  notes: "Accepted at NeurIPS 2026. This citation refers to the arXiv version. Proceedings metadata will be added when available."
   doi: "10.48550/arXiv.2609.04802"
   url: "https://arxiv.org/abs/2609.04802"
   identifiers:
