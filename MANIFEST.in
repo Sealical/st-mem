@@ -1,0 +1,3 @@
+include LICENSE README.md pyproject.toml constraints-demo.txt
+include docs/demo.md docs/demo-validation.md
+recursive-include tests *.py

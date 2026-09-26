@@ -1,7 +1,7 @@
 # Website maintenance
 
-This document is for maintainers of the **website**, not instructions for
-installing ST-Mem. For the research, start with the [project README](../README.md).
+This document is for maintainers of the **website**. For installation, see the
+[core demo guide](demo.md). For the research, start with the [project README](../README.md).
 
 ## Local preview
 
@@ -48,9 +48,11 @@ Do not invent proceedings volume, pages, a conference DOI, presentation type,
 or an exact acceptance date. Update bibliographic fields when the proceedings
 record is available, preserving the arXiv identifier.
 
-The site must continue to say **Code coming soon** until there is a verified public implementation.
-Do not add unusable installation commands, a private code link, or a fake live Demo.
-When code becomes public, verify the actual branch and Quickstart before linking it.
+The public repository now includes a runnable offline CPU demo. Link to its
+verified [installation guide](demo.md), not the private integration repository.
+Describe it as a core demo using synthetic observations. Do not present it as a
+browser inference service, video perception pipeline, or full paper reproduction.
+Run package tests and a clean wheel install when changing demo code.
 
 SMB annotations, evaluation scripts, model weights, and source video are not
 distributed by this site. Do not label a description-only page as a downloadable

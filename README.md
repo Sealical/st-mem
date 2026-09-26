@@ -10,7 +10,7 @@
   <a href="https://arxiv.org/abs/2609.04802">Paper</a> &nbsp;·&nbsp;
   <a href="https://sealical.github.io/st-mem/">Project page</a> &nbsp;·&nbsp;
   <a href="https://sealical.github.io/st-mem/benchmark/">SMB benchmark</a> &nbsp;·&nbsp;
-  <a href="#code">Code coming soon</a> &nbsp;·&nbsp;
+  <a href="#code">Code &amp; demo</a> &nbsp;·&nbsp;
   <a href="#citation">Citation</a>
 </p>
 
@@ -47,12 +47,12 @@ and visual evidence.
 ![LTE-centric framework: perception feeds an object-centric memory with language, spatial and visual anchors. Five linked views support the query tasks.](assets/st_mem_framework.png)
 
 _Full research architecture from the [paper](https://arxiv.org/abs/2609.04802v1),
-including components outside the planned core release.
+including components outside the core demo.
 [View full resolution](assets/st_mem_framework.png)._
 
 ## Code
 
-This repository is for the ST-Mem project website and demo. Demo code is coming soon.
+This repository contains the ST-Mem project website and demo. [Run the demo](docs/demo.md).
 
 ## Citation
 
@@ -72,6 +72,6 @@ This repository is for the ST-Mem project website and demo. Demo code is coming 
 
 ---
 
-Website code: [MIT](LICENSE) · Original paper figures:
+Website and demo code: [MIT](LICENSE) · Original paper figures:
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 ([attribution](assets/README.md)).

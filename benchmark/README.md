@@ -81,12 +81,12 @@ leaderboard** or measurements from this website.
 
 ## Availability, source attribution, and citation
 
-| Resource                                     | Status                                                                        |
-| -------------------------------------------- | ----------------------------------------------------------------------------- |
-| Paper and benchmark description              | Public.                                                                       |
-| ST-Mem memory-core implementation            | Code coming soon. Separate from benchmark evaluation code.                    |
-| SMB query annotations and evaluation scripts | Not released here.                                                            |
-| EgoLife source recordings                    | Not redistributed. Consult the original EgoLife project for access and terms. |
+| Resource                                     | Status                                                                          |
+| -------------------------------------------- | ------------------------------------------------------------------------------- |
+| Paper and benchmark description              | Public.                                                                         |
+| ST-Mem memory-core implementation            | [CPU demo available](../docs/demo.md). Separate from benchmark evaluation code. |
+| SMB query annotations and evaluation scripts | Not released here.                                                              |
+| EgoLife source recordings                    | Not redistributed. Consult the original EgoLife project for access and terms.   |
 
 EgoLife is the work of Jingkang Yang and collaborators, _EgoLife: Towards
 Egocentric Life Assistant_, CVPR 2025. Ego4D is the work of Kristen Grauman

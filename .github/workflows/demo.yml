@@ -1,0 +1,38 @@
+name: Demo checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install the standalone package
+        run: python -m pip install -c constraints-demo.txt '.[dev]'
+      - name: Test and lint
+        run: |
+          python -m pytest -q
+          python -m ruff check src tests
+      - name: Build distributions
+        run: python -m build
+      - name: Verify the wheel outside the source checkout
+        shell: bash
+        run: |
+          python -m venv "$RUNNER_TEMP/stmem-wheel"
+          "$RUNNER_TEMP/stmem-wheel/bin/python" -m pip install -c constraints-demo.txt dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/stmem-wheel/bin/stmem" demo --output wheel-demo
+          "$RUNNER_TEMP/stmem-wheel/bin/stmem" verify --memory wheel-demo/memory/memory.json
+          "$RUNNER_TEMP/stmem-wheel/bin/python" -c "import importlib.util; assert importlib.util.find_spec('torch') is None; assert importlib.util.find_spec('embodied_slam') is None"
