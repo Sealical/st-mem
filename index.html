@@ -19,7 +19,7 @@
     />
     <meta
       property="og:description"
-      content="NeurIPS 2026 · Accepted. Object-centric spatiotemporal memory through language, spatial anchors, and visual evidence. Explore LTE, SMB, the CPU demo, and real-video integrations."
+      content="NeurIPS 2026 · Accepted. Explore LTE through a research film with real EgoLife examples, the paper framework, and results on SMB and Ego4D."
     />
     <link rel="canonical" href="https://sealical.github.io/st-mem/" />
     <meta property="og:url" content="https://sealical.github.io/st-mem/" />
@@ -41,7 +41,7 @@
     />
     <meta
       name="twitter:description"
-      content="NeurIPS 2026 · Accepted. Object-centric spatiotemporal memory through language, spatial anchors, and visual evidence. Explore LTE, SMB, the CPU demo, and real-video integrations."
+      content="NeurIPS 2026 · Accepted. Explore LTE through a research film with real EgoLife examples, the paper framework, and results on SMB and Ego4D."
     />
     <meta
       name="twitter:image"
@@ -118,6 +118,7 @@
             "creativeWorkStatus": "Accepted at NeurIPS 2026",
             "inLanguage": "en",
             "isAccessibleForFree": true,
+            "video": { "@id": "https://sealical.github.io/st-mem/#film" },
             "license": "https://creativecommons.org/licenses/by/4.0/",
             "image": "https://sealical.github.io/st-mem/assets/st_mem_teaser.png",
             "description": "Linguistic Trajectory Encoding (LTE) is an object-centric spatiotemporal memory representation combining natural-language descriptions, sparse spatial anchors, and visual anchors for long-horizon embodied agents.",
@@ -210,6 +211,7 @@
                 "name": "Lanjun Wang",
                 "givenName": "Lanjun",
                 "familyName": "Wang",
+                "email": "wanglanjun@tju.edu.cn",
                 "affiliation": {
                   "@id": "https://sealical.github.io/st-mem/#tju"
                 }
@@ -219,11 +221,27 @@
                 "name": "Zili Yi",
                 "givenName": "Zili",
                 "familyName": "Yi",
+                "email": "yi@nju.edu.cn",
                 "affiliation": {
                   "@id": "https://sealical.github.io/st-mem/#nju"
                 }
               }
             ]
+          },
+          {
+            "@type": "VideoObject",
+            "@id": "https://sealical.github.io/st-mem/#film",
+            "name": "Linguistic Trajectory Encoding: Method and Real EgoLife Examples",
+            "description": "An English-language overview of Linguistic Trajectory Encoding, its object-centric memory framework, real EgoLife examples, and paper-reported SMB and Ego4D results.",
+            "url": "https://sealical.github.io/st-mem/#film",
+            "contentUrl": "https://sealical.github.io/st-mem/media/lte-neurips-2026-project-film-en.mp4",
+            "thumbnailUrl": "https://sealical.github.io/st-mem/media/lte-neurips-2026-project-film-en-cover.jpg",
+            "encodingFormat": "video/mp4",
+            "duration": "PT1M33.974S",
+            "uploadDate": "2026-09-29",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "about": { "@id": "https://doi.org/10.48550/arXiv.2609.04802" }
           },
           {
             "@type": "SoftwareSourceCode",
@@ -313,7 +331,7 @@
           agents.
         </p>
         <div class="authors" aria-label="Authors in paper order">
-          <span>Tianyidan Xie<sup>1,*</sup></span
+          <span>Tianyidan Xie<sup>1</sup></span
           ><span>Shenyi Wang<sup>1</sup></span
           ><span>Qiang Tang<sup>2</sup></span
           ><span>Mingjie Wang<sup>3</sup></span
@@ -321,7 +339,7 @@
           <span>Xuanfu Li<sup>4</sup></span
           ><span>Zhan Xu<sup>4</sup></span
           ><span>Jian Yang<sup>1</sup></span
-          ><span>Lanjun Wang<sup>5</sup></span
+          ><span>Lanjun Wang<sup>5,*</sup></span
           ><span>Zili Yi<sup>1,*</sup></span>
         </div>
         <div class="affiliations">
@@ -333,8 +351,8 @@
         </div>
         <p class="correspondence">
           * Corresponding authors:
-          <a href="mailto:sealical@outlook.com">Tianyidan Xie</a> and
-          <a href="mailto:yi@nju.edu.cn">Zili Yi</a>
+          <a href="mailto:yi@nju.edu.cn">Zili Yi</a> and
+          <a href="mailto:wanglanjun@tju.edu.cn">Lanjun Wang</a>
         </p>
         <div class="hero-actions">
           <a
@@ -344,8 +362,8 @@
             rel="noopener noreferrer"
             >Read the paper <span aria-hidden="true">↗</span></a
           >
-          <a class="button button-secondary" href="#code"
-            >Demo <span class="button-badge">available</span></a
+          <a class="button button-secondary" href="#film"
+            >Watch the film <span aria-hidden="true">↓</span></a
           >
           <a class="button button-text" href="benchmark/"
             >SMB benchmark <span aria-hidden="true">↗</span></a
@@ -354,6 +372,60 @@
             >BibTeX <span aria-hidden="true">↓</span></a
           >
         </div>
+      </section>
+
+      <section
+        class="container film-section"
+        id="film"
+        aria-labelledby="film-title"
+      >
+        <div class="film-heading">
+          <div>
+            <p class="eyebrow">THE RESEARCH FILM</p>
+            <h2 id="film-title">LTE in motion.</h2>
+          </div>
+          <p>
+            See how object histories connect language, spatial anchors, and
+            visual evidence across real egocentric video.
+          </p>
+        </div>
+        <figure class="film-card">
+          <div class="figure-topline">
+            <span>METHOD · REAL EGOLIFE EXAMPLES · RESULTS</span>
+            <a href="media/lte-neurips-2026-project-film-en.mp4"
+              >Open video ↗</a
+            >
+          </div>
+          <video
+            controls
+            preload="none"
+            playsinline
+            width="1920"
+            height="1080"
+            poster="media/lte-neurips-2026-project-film-en-cover.jpg"
+            aria-label="English film introducing Linguistic Trajectory Encoding and real EgoLife demonstrations"
+          >
+            <source
+              src="media/lte-neurips-2026-project-film-en.mp4"
+              type="video/mp4"
+            />
+            <track
+              kind="captions"
+              src="media/lte-neurips-2026-project-film-en.vtt"
+              srclang="en"
+              label="English"
+            />
+            Your browser does not support embedded video.
+            <a href="media/lte-neurips-2026-project-film-en.mp4"
+              >Open the MP4 file</a
+            >.
+          </video>
+          <figcaption>
+            The film uses the paper framework and real EgoLife examples to show
+            trajectory retrieval and linked spatial and visual evidence. SMB and
+            Ego4D numbers are paper-reported results.
+          </figcaption>
+        </figure>
       </section>
 
       <section

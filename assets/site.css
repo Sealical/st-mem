@@ -348,6 +348,42 @@ code {
   line-height: 1.8;
   color: var(--muted);
 }
+.film-section {
+  padding-block: 24px 58px;
+}
+.film-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 28px;
+  margin-bottom: 22px;
+}
+.film-heading h2 {
+  margin-top: 9px;
+}
+.film-heading > p {
+  max-width: 430px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.film-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+.film-card .figure-topline a {
+  color: var(--ink);
+  white-space: nowrap;
+}
+.film-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+}
 .abstract-section {
   max-width: 920px;
   margin-bottom: 54px;
@@ -1160,6 +1196,17 @@ html:has(.figure-dialog[open]) {
   .hero-summary {
     font-size: 14px;
   }
+  .film-section {
+    padding-block: 16px 42px;
+  }
+  .film-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .film-heading > p {
+    max-width: 620px;
+  }
   .affiliations {
     font-size: 10px;
   }
@@ -1286,6 +1333,13 @@ html:has(.figure-dialog[open]) {
   }
   .figure-topline span:last-child {
     text-align: right;
+  }
+  .film-card .figure-topline {
+    align-items: flex-start;
+  }
+  .film-card .figure-topline span {
+    max-width: 70%;
+    text-align: left;
   }
   .figure-link {
     padding: 8px 5px 29px;

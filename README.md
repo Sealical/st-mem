@@ -9,6 +9,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2609.04802">Paper</a> &nbsp;·&nbsp;
   <a href="https://sealical.github.io/st-mem/">Project page</a> &nbsp;·&nbsp;
+  <a href="https://sealical.github.io/st-mem/#film">Film</a> &nbsp;·&nbsp;
   <a href="https://sealical.github.io/st-mem/benchmark/">SMB benchmark</a> &nbsp;·&nbsp;
   <a href="#code">Code &amp; demo</a> &nbsp;·&nbsp;
   <a href="#citation">Citation</a>
